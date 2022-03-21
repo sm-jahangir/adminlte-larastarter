@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\backend\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +21,4 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('backend', [DashboardController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
