@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -19,5 +20,5 @@ Route::post('profile', [ProfileController::class, 'update'])->name('profile.upda
 Route::get('profile/changepassword', [ProfileController::class, 'changepass'])->name('profile.changepassindex');
 Route::post('profile/changepassword', [ProfileController::class, 'changepassword'])->name('profile.changepassword');
 
-
+Route::resource('pages', PageController::class); 
 

@@ -47,12 +47,11 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                <li class="nav-item  {{Request::is('app/pages*') ? 'menu-open' : ''}}">
+                    <a href="{{ route('app.pages.index') }}" class="nav-link  {{Request::is('app/pages*') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
+                            Pages
                         </p>
                     </a>
                 </li>
