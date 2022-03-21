@@ -19,6 +19,9 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('assets/backend') }}/dist/css/adminlte.min.css">
 
+    {{-- Lara-Izitoast : Laravel Notification Package Styles--}}
+    <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack('css')
@@ -53,9 +56,15 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('assets/backend') }}/dist/js/adminlte.min.js"></script>
 
+    {{-- Lara-Izitoast : Laravel Notification Package Styles--}}
+    <script src="{{ asset('js/iziToast.js') }}"></script>
+    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @stack('js')
+
+    
+    @include('vendor.lara-izitoast.toast')
 </body>
 
 </html>

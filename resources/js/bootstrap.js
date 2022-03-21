@@ -1,7 +1,7 @@
 window._ = require('lodash');
 
 try {
-    
+    window.Swal = require('sweetalert2');
 } catch (e) {}
 
 /**
