@@ -6,7 +6,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" class="nav-link">Home</a>
+            <a href="{{ url('/') }}" target="__blank" class="nav-link">Frontend</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
@@ -139,10 +139,9 @@
                   <img style="margin-top: -6px;" src="{{ asset('storage/users').'/'.Auth::user()->avatar }}" width="40" height="40" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="">Dashboard</a>
-                  <a class="dropdown-item" href="">Backups</a>
-                  <a class="dropdown-item" href="">Edit Profile</a>
-                  <a class="dropdown-item" href="">Change Password</a>
+                  <a class="dropdown-item" href="{{route('app.dashboard')}}">Dashboard</a>
+                  <a class="dropdown-item" href="{{ route('app.profile.index') }}">Edit Profile</a>
+                  <a class="dropdown-item" href="{{ route('app.profile.changepassindex') }}">Change Password</a>
                   <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
