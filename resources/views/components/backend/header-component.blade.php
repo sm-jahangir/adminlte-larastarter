@@ -132,9 +132,25 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                <i class="fas fa-th-large"></i>
-            </a>
+          <div class="collapse navbar-collapse" id="navbar-list-4">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img style="margin-top: -6px;" src="{{ asset('storage/users').'/'.Auth::user()->avatar }}" width="40" height="40" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="">Dashboard</a>
+                  <a class="dropdown-item" href="">Backups</a>
+                  <a class="dropdown-item" href="">Edit Profile</a>
+                  <a class="dropdown-item" href="">Change Password</a>
+                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+                </div>
+              </li>   
+            </ul>
+          </div>
         </li>
     </ul>
 </nav>
