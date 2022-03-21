@@ -16,6 +16,7 @@
             </div>
             <div class="info">
                 <a href="#" class="d-block">Jahangir Alam</a>
+                <small class="text-white">{{Auth::user()->role->name}}</small>
             </div>
         </div>
 
