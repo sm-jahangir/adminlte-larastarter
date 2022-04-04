@@ -2,8 +2,10 @@
 
 @section('title','Users')
 
-@push('css')
-<link rel="stylesheet" href="{{ asset('backend/datatables') }}/dataTables.bootstrap4.min.css">
+@push('pluginscss')
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('assets/backend') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+
 @endpush
 
 @section('content')
@@ -105,30 +107,34 @@
     <!-- /.content -->
 </div>
 @endsection
-@push('js')
-<script src="{{ asset('backend/datatables') }}/jquery.dataTables.min.js"></script>
-<script src="{{ asset('backend/datatables') }}/dataTables.bootstrap4.min.js"></script>
+
+@push('pluginsjs')
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('assets/backend') }}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('assets/backend') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+
+
 <script>
     $(document).ready(function () {
         // Datatable
         $("#datatable").DataTable();
     });
-
     function deleteData(id) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value) {
-                document.getElementById('delete-form-' + id).submit();
-            }
-        })
-    }
-
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.value) {
+            document.getElementById('delete-form-' + id).submit();
+        }
+    })
+}
 </script>
+
+
 @endpush

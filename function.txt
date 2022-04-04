@@ -1,0 +1,9 @@
+
+
+
+
+
+
+
+15. Laravel Settings with menu helper
+16. Laravel Socialite Login and Register
