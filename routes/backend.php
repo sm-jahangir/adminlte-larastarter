@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Backend\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\backend\DashboardController;
 
 
@@ -24,3 +25,4 @@ Route::post('profile/changepassword', [ProfileController::class, 'changepassword
 Route::resource('pages', PageController::class);
 
 Route::resource('category', CategoryController::class);
+Route::resource('tag', TagController::class);
