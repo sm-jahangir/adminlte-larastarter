@@ -77,6 +77,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item  {{Request::is('app/brand*') ? 'menu-open' : ''}}">
+                    <a href="{{ route('app.brand.index') }}"
+                        class="nav-link  {{Request::is('app/brand*') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Brand
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

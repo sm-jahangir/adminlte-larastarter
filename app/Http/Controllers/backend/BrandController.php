@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class BrandController extends Controller
 {
@@ -15,7 +17,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        // $categories = brand::where('parent_id', null)->orderBy('order', 'DESC')->get();
+        $brands = Brand::orderBy('order', 'DESC')->get();
+        return view('backend.brand.index', compact('brands'));
     }
 
     /**
@@ -25,7 +29,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.brand.form');
     }
 
     /**
@@ -36,7 +40,25 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $brand = Brand::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'status' => $request->filled('status'),
+        ]);
+        // upload images
+
+        if ($request->has('logo')) {
+            $img = $request->file('logo');
+            $ext = $img->extension();
+            $file = time() . '.' . $ext;
+            $img->storeAs('public/brand', $file); //above 4 line process the image code
+            $brand->logo =  $file; //ai code ta image ke insert kore
+        }
+        $brand->save();
+
+        notify()->success('Brand Successfully Added.', 'Added');
+        return redirect()->route('app.brand.index');
     }
 
     /**
@@ -58,7 +80,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('backend.brand.form', compact('brand'));
     }
 
     /**
@@ -70,7 +92,26 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        // return $request;
+        $brand->update([
+            'name' => $request->name,
+            'status' => $request->filled('status'),
+        ]);
+        // upload images
+        if ($request->hasFile('logo') && request('logo') != '') {
+            $imagePath = public_path('storage/brand/' . $brand->logo);
+            if (File::exists($imagePath)) {
+                unlink($imagePath);
+            }
+            $img = $request->file('logo');
+            $ext = $img->extension();
+            $file = time() . '.' . $ext;
+            $img->storeAs('public/brand', $file); //above 4 line process the image code
+            $brand->logo =  $file; //ai code ta image ke insert kore
+            $brand->save();
+        }
+        notify()->success('brand Updated Successfully.', 'Updated');
+        return redirect()->route('app.brand.index');
     }
 
     /**
@@ -81,6 +122,8 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        notify()->success("Brand Successfully Deleted", "Deleted");
+        return back();
     }
 }
