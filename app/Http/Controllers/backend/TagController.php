@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
@@ -15,7 +16,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::latest()->get();
+        return view('backend.tags.index', compact('tags'));
     }
 
     /**
@@ -25,7 +27,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.tags.form');
     }
 
     /**
@@ -36,7 +38,13 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        Tag::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+        ]);
+        notify()->success('Tag Successfully Added.', 'Added');
+        return redirect()->route('app.tags.index');
     }
 
     /**
@@ -58,7 +66,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('backend.tags.form', compact('tag'));
     }
 
     /**
@@ -70,7 +78,13 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        // return $request;
+        $tag->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+        ]);
+        notify()->success('Tag Successfully Update.', 'Update');
+        return redirect()->route('app.tags.index');
     }
 
     /**
@@ -81,6 +95,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        notify()->success("Tag Successfully Deleted", "Deleted");
+        return back();
     }
 }

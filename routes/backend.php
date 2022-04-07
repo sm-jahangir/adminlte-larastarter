@@ -25,4 +25,4 @@ Route::post('profile/changepassword', [ProfileController::class, 'changepassword
 Route::resource('pages', PageController::class);
 
 Route::resource('category', CategoryController::class);
-Route::resource('tag', TagController::class);
+Route::resource('tags', TagController::class);

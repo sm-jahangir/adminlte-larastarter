@@ -24,15 +24,17 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('app.dashboard') }}" class="nav-link {{Request::is('app/dashboard') ? 'active' : ''}}">
+                    <a href="{{ route('app.dashboard') }}"
+                        class="nav-link {{Request::is('app/dashboard') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
                     </a>
-                </li>   
+                </li>
                 <li class="nav-item  {{Request::is('app/roles*') ? 'menu-open' : ''}}">
-                    <a href="{{ route('app.roles.index') }}" class="nav-link  {{Request::is('app/roles*') ? 'active' : ''}}">
+                    <a href="{{ route('app.roles.index') }}"
+                        class="nav-link  {{Request::is('app/roles*') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Roles
@@ -40,7 +42,8 @@
                     </a>
                 </li>
                 <li class="nav-item  {{Request::is('app/users*') ? 'menu-open' : ''}}">
-                    <a href="{{ route('app.users.index') }}" class="nav-link  {{Request::is('app/users*') ? 'active' : ''}}">
+                    <a href="{{ route('app.users.index') }}"
+                        class="nav-link  {{Request::is('app/users*') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Users
@@ -48,10 +51,29 @@
                     </a>
                 </li>
                 <li class="nav-item  {{Request::is('app/pages*') ? 'menu-open' : ''}}">
-                    <a href="{{ route('app.pages.index') }}" class="nav-link  {{Request::is('app/pages*') ? 'active' : ''}}">
+                    <a href="{{ route('app.pages.index') }}"
+                        class="nav-link  {{Request::is('app/pages*') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Pages
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item  {{Request::is('app/category*') ? 'menu-open' : ''}}">
+                    <a href="{{ route('app.category.index') }}"
+                        class="nav-link  {{Request::is('app/category*') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Categories
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item  {{Request::is('app/tags*') ? 'menu-open' : ''}}">
+                    <a href="{{ route('app.tags.index') }}"
+                        class="nav-link  {{Request::is('app/tags*') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Tags
                         </p>
                     </a>
                 </li>
