@@ -86,6 +86,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item  {{Request::is('app/ads*') ? 'menu-open' : ''}}">
+                    <a href="{{ route('app.ads.index') }}"
+                        class="nav-link  {{Request::is('app/ads*') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Ads
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

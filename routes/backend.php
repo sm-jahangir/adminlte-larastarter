@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\AdsController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\RoleController;
@@ -28,3 +29,4 @@ Route::resource('pages', PageController::class);
 Route::resource('category', CategoryController::class);
 Route::resource('tags', TagController::class);
 Route::resource('brand', BrandController::class);
+Route::resource('ads', AdsController::class);
