@@ -95,6 +95,35 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Catalogues
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="pages/charts/chartjs.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Products</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/charts/chartjs.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Color</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/charts/flot.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Size</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

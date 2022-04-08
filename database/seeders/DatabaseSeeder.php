@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(TagSeeder::class);
         $this->call(BrandSeeder::class);
+        $this->call(ColorSeeder::class);
+        $this->call(SizeSeeder::class);
     }
 }
