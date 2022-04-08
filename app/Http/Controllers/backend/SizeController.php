@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Size;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SizeController extends Controller
 {
@@ -15,7 +16,8 @@ class SizeController extends Controller
      */
     public function index()
     {
-        //
+        $sizes = Size::orderBy('order', 'DESC')->get();
+        return view('backend.size.index', compact('sizes'));
     }
 
     /**
@@ -25,7 +27,7 @@ class SizeController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.size.form');
     }
 
     /**
@@ -36,7 +38,15 @@ class SizeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $size = Size::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'status' => $request->filled('status'),
+        ]);
+        $size->save();
+
+        notify()->success('Size Successfully Added.', 'Added');
+        return redirect()->route('app.size.index');
     }
 
     /**
@@ -58,7 +68,7 @@ class SizeController extends Controller
      */
     public function edit(Size $size)
     {
-        //
+        return view('backend.size.form', compact('size'));
     }
 
     /**
@@ -70,7 +80,15 @@ class SizeController extends Controller
      */
     public function update(Request $request, Size $size)
     {
-        //
+        $size->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'status' => $request->filled('status'),
+        ]);
+        $size->save();
+
+        notify()->success('Size Successfully Update.', 'Update');
+        return redirect()->route('app.size.index');
     }
 
     /**
@@ -81,6 +99,8 @@ class SizeController extends Controller
      */
     public function destroy(Size $size)
     {
-        //
+        $size->delete();
+        notify()->success('Size Successfully Deleted.', 'Deleted');
+        return redirect()->route('app.size.index');
     }
 }

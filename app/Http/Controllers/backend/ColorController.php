@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Color;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ColorController extends Controller
 {
@@ -15,7 +16,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        $colors = Color::orderBy('order', 'DESC')->get();
+        return view('backend.color.index', compact('colors'));
     }
 
     /**
@@ -25,7 +27,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.color.form');
     }
 
     /**
@@ -36,7 +38,17 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $color = Color::create([
+            'name' => $request->name,
+            'color_code' => $request->color_code,
+            'slug' => Str::slug($request->name),
+            'status' => $request->filled('status'),
+        ]);
+        $color->save();
+
+        notify()->success('Color Successfully Added.', 'Added');
+        return redirect()->route('app.color.index');
     }
 
     /**
@@ -58,7 +70,7 @@ class ColorController extends Controller
      */
     public function edit(Color $color)
     {
-        //
+        return view('backend.color.form', compact('color'));
     }
 
     /**
@@ -70,7 +82,17 @@ class ColorController extends Controller
      */
     public function update(Request $request, Color $color)
     {
-        //
+        // return $request;
+        $color->update([
+            'name' => $request->name,
+            'color_code' => $request->color_code,
+            'slug' => Str::slug($request->name),
+            'status' => $request->filled('status'),
+        ]);
+        $color->save();
+
+        notify()->success('Color Successfully Update.', 'Update');
+        return redirect()->route('app.color.index');
     }
 
     /**
@@ -81,6 +103,8 @@ class ColorController extends Controller
      */
     public function destroy(Color $color)
     {
-        //
+        $color->delete();
+        notify()->success('Color Successfully Deleted.', 'Deleted');
+        return redirect()->route('app.color.index');
     }
 }
