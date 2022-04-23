@@ -7,3 +7,7 @@
 
 15. Laravel Settings with menu helper
 16. Laravel Socialite Login and Register
+
+============================================
+1. taxt ta ami chaile dynamic korte partam, kintu korlam nah
+2. Store id niye pore vabtechi,,,, tobe akhn chacchi je ata user er role diye define kore dibo
