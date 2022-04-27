@@ -90,8 +90,8 @@
 									</div>
 									<hr>
 									<div class="bs-stepper-content">
-										<form action="{{ route('app.product.index') }}" method="GET">
-
+										<form action="{{ route('app.product.store') }}" method="POST" enctype="multipart/form-data">
+											@csrf
 											<!-- General steps content here -->
 											<div id="general-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
 												<div class="form-group">
@@ -111,35 +111,73 @@
 											</div>
 											<!-- Specification steps content here -->
 											<div id="specification-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label>Product SKU</label>
+															<input class="form-control" placeholder="Enter Your SKU" type="text" name="sku" id="sku">
+														</div>
+													</div>
 
-												<div class="form-group">
-													<label>Product SKU</label>
-													<input class="form-control" placeholder="Enter Your SKU" type="text" name="sku" id="sku">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label>Categories</label>
+															<select name="categories" class="select2 select2-hidden-accessible" multiple=""
+																data-placeholder="Select a Color" style="width: 100%;" data-select2-id="13" tabindex="-1"
+																aria-hidden="true">
+																@foreach ($categories as $category)
+																	<option value="{{ $category->id }}">{{ $category->name }}</option>
+																@endforeach
+															</select>
+														</div>
+													</div>
+
+													<div class="col-md-6">
+														<div class="form-group">
+															<label>Tags</label>
+															<select name="tags" class="select2 select2-hidden-accessible" multiple=""
+																data-placeholder="Select a Color" style="width: 100%;" data-select2-id="12" tabindex="-1"
+																aria-hidden="true">
+																@foreach ($tags as $tag)
+																	<option value="{{ $tag->id }}">{{ $tag->name }}</option>
+																@endforeach
+															</select>
+														</div>
+													</div>
+
+													<div class="col-md-6">
+														<div class="form-group">
+															<label>Brand</label>
+															<select name="brand_id" class="custom-select" style="width: 100%;">
+																@foreach ($brands as $brand)
+																	<option value="{{ $brand->id }}">{{ $brand->name }}</option>
+																@endforeach
+															</select>
+														</div>
+													</div>
 												</div>
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
 															<label>Color</label>
-															<select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a Color"
-																style="width: 100%;" data-select2-id="8" tabindex="-1" aria-hidden="true">
-																<option>Red</option>
-																<option>Yellow</option>
-																<option>Green</option>
-																<option>White</option>
-																<option>Apple Green</option>
+															<select name="colors" class="select2 select2-hidden-accessible" multiple=""
+																data-placeholder="Select a Color" style="width: 100%;" data-select2-id="8" tabindex="-1"
+																aria-hidden="true">
+																@foreach ($colors as $color)
+																	<option value="{{ $color->id }}">{{ $color->name }}</option>
+																@endforeach
 															</select>
 														</div>
 													</div>
 													<div class="col-md-6">
 														<div class="form-group">
 															<label>Size</label>
-															<select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a Color"
-																style="width: 100%;" data-select2-id="9" tabindex="-1" aria-hidden="true">
-																<option>L</option>
-																<option>M</option>
-																<option>X</option>
-																<option>XL</option>
-																<option>XXL</option>
+															<select name="sizes" class="select2 select2-hidden-accessible" multiple=""
+																data-placeholder="Select a Color" style="width: 100%;" data-select2-id="9" tabindex="-1"
+																aria-hidden="true">
+																@foreach ($sizes as $size)
+																	<option value="{{ $size->id }}">{{ $size->name }}</option>
+																@endforeach
 															</select>
 														</div>
 													</div>
@@ -148,8 +186,7 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label>Product Collection</label>
-															<select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a Color"
-																style="width: 100%;" data-select2-id="10" tabindex="-1" aria-hidden="true">
+															<select name="product_collections" class="custom-select">
 																<option>New Arrival</option>
 																<option>Best Sellers</option>
 																<option>Special Offer</option>
@@ -159,8 +196,7 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label>Label</label>
-															<select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a Color"
-																style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+															<select name="labels" class="custom-select">
 																<option>Hot</option>
 																<option>New</option>
 																<option>Sale</option>
@@ -225,11 +261,11 @@
 
 												<div class="form-group">
 													<label for="image">Product Image(Optional)</label>
-													<input type="file" name="image" id="image" class="dropify" data-default-file="">
+													<input type="file" name="featured_image" id="image" class="dropify" data-default-file="">
 												</div>
 												<div class="form-group">
 													<label for="gallery">Product Gallery (Optional)</label>
-													<input type="file" name="gallery" id="gallery" multiple>
+													<input type="file" name="image" id="gallery" multiple>
 												</div>
 												<button type="button" class="btn btn-primary" onclick="stepper.previous()">Previous</button>
 												<button type="button" class="btn btn-primary" onclick="stepper.next()">Next</button>
@@ -263,7 +299,7 @@
 												<div class="row">
 													<div class="col-md-3">
 														<label for="featured">Featured Product</label>
-														<input type="checkbox" name="my-checkbox" data-bootstrap-switch data-off-color="danger"
+														<input type="checkbox" name="featured" data-bootstrap-switch data-off-color="danger"
 															data-on-color="success">
 													</div>
 													<div class="col-md-3">
@@ -279,6 +315,14 @@
 													<div class="col-md-3">
 														<label for="featured">Product Status</label>
 														<input type="checkbox" name="status" checked data-bootstrap-switch>
+													</div>
+													<div class="col-md-12 d-flex mt-3">
+														<label class="mr-2">Shop</label>
+														<select name="user_id" class="custom-select w-50">
+															@foreach ($users as $user)
+																<option value="{{ $user->id }}">{{ $user->name }}</option>
+															@endforeach
+														</select>
 													</div>
 												</div>
 												<br>

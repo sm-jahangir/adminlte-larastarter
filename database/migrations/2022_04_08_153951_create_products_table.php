@@ -38,6 +38,7 @@ return new class extends Migration
             // Store
             //Delivery id
             // Tax_id
+            //Stock Status koto gulo product bikri hoiche ar koto gulo available seta kivabe ber kore seta pari nai
 
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
