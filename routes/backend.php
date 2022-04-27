@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ColorController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SizeController;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -32,3 +33,4 @@ Route::resource('brand', BrandController::class);
 Route::resource('ads', AdsController::class);
 Route::resource('size', SizeController::class);
 Route::resource('color', ColorController::class);
+Route::resource('product', ProductController::class);
