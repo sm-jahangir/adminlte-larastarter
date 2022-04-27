@@ -11,6 +11,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\User;
 
 class ProductController extends Controller
@@ -98,6 +99,16 @@ class ProductController extends Controller
             $image->storeAs('public/products', $file); //above 4 line process the image code
             $product->featured_image =  $file; //ai code ta image ke insert kore
             $product->save();
+        }
+        if ($request->has('images')) {
+            foreach ($request->file('images') as $key => $image) {
+                $imageName = $request->title . '-image-' . time() . rand(1, 1000) . '.' . $image->extension();
+                $image->storeAs('public/product_gallery', $imageName);
+                Image::create([
+                    'product_id' => $product->id,
+                    'image' => $imageName
+                ]);
+            }
         }
 
         $product->categories()->attach($request->categories);

@@ -265,7 +265,7 @@
 												</div>
 												<div class="form-group">
 													<label for="gallery">Product Gallery (Optional)</label>
-													<input type="file" name="image" id="gallery" multiple>
+													<input type="file" name="images[]" id="gallery" multiple>
 												</div>
 												<button type="button" class="btn btn-primary" onclick="stepper.previous()">Previous</button>
 												<button type="button" class="btn btn-primary" onclick="stepper.next()">Next</button>

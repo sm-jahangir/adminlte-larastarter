@@ -35,11 +35,15 @@ class Product extends Model
     {
         return $this->belongsToMany(Size::class)->withTimestamps();
     }
-    
+
     // Brand
     public function brand()
     {
         return $this->belongsTo(Brand::class);
     }
-
+    // Images
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 }
