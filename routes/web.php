@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\ProductController;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,9 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [FrontendHomeController::class, 'index'])->name('frontend');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('products.show');
-Route::view('cart', 'frontend.cart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/addtocart/{id}', [CartController::class, 'storeCart'])->name('cart.store');
+Route::get('/check', [CartController::class, 'check']);
 
 
 Auth::routes();

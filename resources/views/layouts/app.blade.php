@@ -40,10 +40,12 @@
 							<a class="nav-link" href="/products">Products</a>
 						</li>
 					</ul>
+
+					<?php $count = Cart::count(); ?>
 					<div class="d-flex ms-auto">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link" href="/cart"><i class="fa fa-shopping-cart text-muted"></i> Cart</a>
+								<a class="nav-link" href="/cart"><i class="fa fa-shopping-cart text-muted"></i> Cart ({{ $count }})</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="/login">Login</a>

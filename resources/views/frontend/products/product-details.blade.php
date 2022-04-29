@@ -121,7 +121,12 @@
 										<label class="radio"> <input type="radio" name="color" value="{{ $color->id }}"> <span>{{ $color->name }}</span> </label>
 									@endforeach
 								</div>
-								<div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button><button class="btn btn-danger text-uppercase mr-2 ms-2 px-4">Buy Now</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
+								<div class="cart mt-4 align-items-center">
+									<button class="btn btn-danger text-uppercase mr-2 px-4" id="addcart" data-id="{{ $product->id }}">Add to cart</button>
+									<button class="btn btn-danger text-uppercase mr-2 ms-2 px-4">Buy Now</button>
+									<i class="fa fa-heart text-muted"></i>
+									<i class="fa fa-share-alt text-muted"></i>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -131,6 +136,16 @@
 	</div>
 @endsection
 @push('js')
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script>
+	 $(document).ready(function() {
+	  $('#addcart').on('click', function() {
+	   var id = $(this).data('id');
+	   alert(id)
+	  })
+	 })
+	</script>
 	<script>
 	 function change_image(image) {
 	  var container = document.getElementById("main-image");
