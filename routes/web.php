@@ -21,7 +21,8 @@ use App\Http\Controllers\HomeController;
 // Route::get('/', function () {
 //     return view('frontend.index');
 // });
-Route::get('/', [FrontendHomeController::class, 'index'])->name('frontend');
+Route::view('/', 'layouts.app');
+// Route::get('/', [FrontendHomeController::class, 'index'])->name('frontend');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
