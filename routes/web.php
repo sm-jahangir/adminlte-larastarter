@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\Frontend\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -15,9 +17,14 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+Route::get('/', [FrontendHomeController::class, 'index'])->name('frontend');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::view('cart', 'frontend.cart');
+
 
 Auth::routes();
 
