@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Product::latest()->get();
-        return view('frontend.index', compact('products'));
+        // $products = Product::latest()->get();
+        return view('frontend.index');
     }
 }
