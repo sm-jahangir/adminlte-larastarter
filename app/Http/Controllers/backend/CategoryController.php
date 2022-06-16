@@ -49,15 +49,9 @@ class CategoryController extends Controller
             'status' => $request->filled('status'),
         ]);
         // upload images
-
-        if ($request->has('image')) {
-            $img = $request->file('image');
-            $ext = $img->extension();
-            $file = time() . '.' . $ext;
-            $img->storeAs('public/category', $file); //above 4 line process the image code
-            $category->image =  $file; //ai code ta image ke insert kore
+        if ($request->hasFile('image')) {
+            $category->addMedia($request->image)->toMediaCollection('image');
         }
-        $category->save();
 
         notify()->success('Category Successfully Added.', 'Added');
         return redirect()->route('app.category.index');

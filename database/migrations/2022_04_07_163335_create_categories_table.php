@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('excerpt')->nullable();
-            $table->string('image')->nullable();
             $table->text('meta_description')->nullable();
             $table->text('meta_keywords')->nullable();
             $table->integer('parent_id')->default(0);
