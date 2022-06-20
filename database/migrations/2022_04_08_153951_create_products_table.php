@@ -24,7 +24,6 @@ return new class extends Migration
             $table->text('excerpt');
             $table->longText('description');
             $table->string('featured_image')->nullable();
-            $table->string('image')->nullable();
             $table->string('sku')->nullable();
             $table->string('price')->nullable();
             $table->string('sale_price')->nullable();

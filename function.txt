@@ -1,14 +1,8 @@
 
+* Laravel UI package use
+* bumbummen99/shoppingcart use for Shooping Cart
+* Added Spatie media library
+* Product e image custom vabe upload korar system ache
 
 
 
-
-
-
-15. Laravel Settings with menu helper
-16. Laravel Socialite Login and Register
-
-============================================
-1. taxt ta ami chaile dynamic korte partam, kintu korlam nah
-2. Store id niye pore vabtechi,,,, tobe akhn chacchi je ata user er role diye define kore dibo
-3. Stock Status koto gulo product bikri hoiche ar koto gulo available seta kivabe ber kore seta pari nai

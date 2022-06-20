@@ -13,4 +13,10 @@ class HomeController extends Controller
         // $products = Product::latest()->get();
         return view('frontend.index');
     }
+
+    public function productapi()
+    {
+        $products = Product::with('images', 'categories')->get();
+        return response()->json($products);
+    }
 }

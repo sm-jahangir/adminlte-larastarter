@@ -103,7 +103,7 @@ class ProductController extends Controller
         }
         if ($request->has('images')) {
             foreach ($request->file('images') as $key => $image) {
-                $imageName = $request->title . '-image-' . time() . rand(1, 1000) . '.' . $image->extension();
+                $imageName = Str::slug($request->title) . '-image-' . time() . $key . '.' . $image->extension();
                 $image->storeAs('public/product_gallery', $imageName);
                 Image::create([
                     'product_id' => $product->id,
@@ -214,7 +214,7 @@ class ProductController extends Controller
         }
         if ($request->has('images')) {
             foreach ($request->file('images') as $key => $image) {
-                $imageName = $request->title . '-image-' . time() . rand(1, 1000) . '.' . $image->extension();
+                $imageName =  Str::slug($request->title) . '-image-' . time() . rand(1, 1000) . '.' . $image->extension();
                 $image->storeAs('public/product_gallery', $imageName);
                 Image::create([
                     'product_id' => $product->id,
