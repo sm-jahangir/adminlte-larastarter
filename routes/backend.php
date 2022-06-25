@@ -13,6 +13,8 @@ use App\Http\Controllers\Backend\ColorController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SizeController;
+use App\Http\Controllers\Backend\SliderController;
+use App\Models\Slider;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('roles', RoleController::class);
@@ -34,3 +36,4 @@ Route::resource('ads', AdsController::class);
 Route::resource('size', SizeController::class);
 Route::resource('color', ColorController::class);
 Route::resource('product', ProductController::class);
+Route::resource('slider', SliderController::class);
