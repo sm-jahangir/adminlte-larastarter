@@ -18,10 +18,13 @@ class SliderSeeder extends Seeder
 
         Slider::create([
             'title' => 'New Product <br> <span style="color: #ff4136;">Collection</span>',
-            'slider_bg' => 'slider-1.jpg'
+            'slider_bg' => 'slider-1.webp',
+            'position' => 'left'
         ]);
         Slider::create([
-            'slider_bg' => 'slider-1.jpg'
+            'title' => 'New Product <br> <span style="color: #ff4136;">Collection</span>',
+            'slider_bg' => 'slider-2.webp',
+            'position' => 'right'
         ]);
     }
 }
