@@ -200,11 +200,6 @@ class ProductController extends Controller
         ]);
         // upload images
         if ($request->hasFile('featured_image')) {
-            $imagePath = public_path('storage/products/' . $product->featured_image);
-            if (File::exists($imagePath)) {
-                unlink($imagePath);
-            }
-
             $image = $request->file('featured_image');
             $ext = $image->extension();
             $file = time() . '.' . $ext;

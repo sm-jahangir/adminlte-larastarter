@@ -24,39 +24,11 @@
 										<li><a href="blog-details.html">Blog details</a></li>
 									</ul>
 								</li>
-								<li class="drop"><a href="{{ url('shop') }}">Shop</a>
-									<ul class="dropdown mega_dropdown">
-										<!-- Start Single Mega MEnu -->
-										<li><a class="mega__title" href="{{ url('shop') }}">shop layout</a>
-											<ul class="mega__item">
-												<li><a href="{{ url('shop') }}">default shop</a></li>
-											</ul>
-										</li>
-										<!-- End Single Mega MEnu -->
-										<!-- Start Single Mega MEnu -->
-										<li><a class="mega__title" href="{{ url('shop') }}">product details layout</a>
-											<ul class="mega__item">
-												<li><a href="product-details.html">tab style 1</a></li>
-										</li>
-									</ul>
-								</li>
-								<!-- End Single Mega MEnu -->
-								<!-- Start Single Mega MEnu -->
-								<li>
-									<ul class="mega__item">
-										<li>
-											<div class="mega-item-img">
-												<a href="{{ url('shop') }}">
-													<img src="{{ asset('assets/frontend') }}/images/feature-img/3.png" alt="">
-												</a>
-											</div>
-										</li>
-									</ul>
-								</li>
+								<li class="drop"><a href="{{ url('shop') }}">Shop</a></li>
+								<li><a href="{{ url('contact') }}">contact</a></li>
 								<!-- End Single Mega MEnu -->
 							</ul>
 							</li>
-							<li><a href="{{ url('contact') }}">contact</a></li>
 							</ul>
 						</nav>
 						<div class="mobile-menu clearfix visible-xs visible-sm">
