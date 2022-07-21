@@ -24,7 +24,7 @@
 										<li><a href="blog-details.html">Blog details</a></li>
 									</ul>
 								</li>
-								<li class="drop"><a href="{{ url('shop') }}">Shop</a></li>
+								<li class="drop"><a href="{{ route('products.index') }}">Shop</a></li>
 								<li><a href="{{ url('contact') }}">contact</a></li>
 								<!-- End Single Mega MEnu -->
 							</ul>
