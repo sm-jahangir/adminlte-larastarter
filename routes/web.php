@@ -30,9 +30,13 @@ Route::view('checkout', 'frontend.checkout');
 Route::view('single-blog', 'frontend.single-blog');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('products.show');
-// Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-// Route::get('/addtocart/{id}', [CartController::class, 'storeCart'])->name('cart.store');
-// Route::get('/check', [CartController::class, 'check']);
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/addtocart/{id}', [CartController::class, 'storeCart'])->name('cart.store');
+Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+Route::get('/check', [CartController::class, 'check']);
+Route::post('/abcdef', [CartController::class, 'abcdef'])->name('abcdef');
 
 
 Auth::routes();

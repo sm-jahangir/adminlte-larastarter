@@ -9,6 +9,7 @@
 						<div class="col-xs-12">
 							<div class="bradcaump__inner text-center">
 								<h2 class="bradcaump-title">Product Details</h2>
+								<a href="{{ route('cart.store', $product->id) }}">Add to cart</a>
 								<nav class="bradcaump-inner">
 									<a class="breadcrumb-item" href="/">Home</a>
 									<span class="brd-separetor">/</span>
@@ -70,7 +71,8 @@
 						</div>
 					</div>
 					<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 smt-30 xmt-30">
-						<div class="htc__product__details__inner">
+						<form action="{{ route('cart.store', $product->id) }}" method="get" class="htc__product__details__inner">
+							@csrf
 							<div class="pro__detl__title">
 								<h2>{{ $product->title }}</h2>
 							</div>
@@ -80,13 +82,14 @@
 							<ul class="pro__dtl__prize">
 								<li class="old__prize">${{ $product->price }}</li>
 								<li>${{ $product->sale_price }}</li>
+								<input type="hidden" name="sale_price" value="{{ $product->sale_price }}">
 							</ul>
 							<div class="pro__dtl__color">
 								<h2 class="title__5">Choose Colour</h2>
 								<ul class="pro__choose__color">
-									<select class="form-control" style="width: 18%" name="" id="">
+									<select class="form-control" style="width: 18%" name="color" id="">
 										@foreach ($product->colors as $color)
-											<option value="">{{ $color->name }}</option>
+											<option value="{{ $color->name }}">{{ $color->name }}</option>
 										@endforeach
 									</select>
 									{{-- <li class="blue"><a href="#"><i class="zmdi zmdi-circle"></i></a></li>
@@ -97,9 +100,9 @@
 							<div class="pro__dtl__size">
 								<h2 class="title__5">Size</h2>
 								<ul class="pro__choose__size">
-									<select class="form-control" style="width: 18%" name="" id="">
+									<select class="form-control" style="width: 18%" name="size" id="">
 										@foreach ($product->sizes as $size)
-											<option value="">{{ $size->name }}</option>
+											<option value="{{ $size->name }}">{{ $size->name }}</option>
 										@endforeach
 									</select>
 								</ul>
@@ -107,18 +110,24 @@
 							<div class="product-action-wrap">
 								<div class="prodict-statas"><span>Quantity :</span></div>
 								<div class="product-quantity">
-									<form id='myform' method='POST' action='#'>
-										<div class="product-quantity">
-											<div class="cart-plus-minus">
-												<input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
-											</div>
+									<div class="product-quantity">
+										<div class="cart-plus-minus">
+											<input class="cart-plus-minus-box" type="text" name="product_qty" value="1">
 										</div>
-									</form>
+									</div>
 								</div>
 							</div>
 							<ul class="pro__dtl__btn">
 								<li class="buy__now__btn"><a href="#">Buy Now</a></li>
-								<li class="buy__now__btn"><a href="#">Add to Cart</a></li>
+								<li class="buy__now__btn"><button style="    border: 1px solid #ddd;
+									padding: 10px 0;
+									color: #4b4b4b;
+									background-color: transparent;
+									font-size: 14px;
+									text-transform: uppercase;
+									width: 175px;
+									transition: 0.3s;"
+										type="submit">Add to Cart</button></li>
 								<li><a href="#"><span class="ti-heart"></span></a></li>
 								<li><a href="#"><span class="ti-email"></span></a></li>
 							</ul>
@@ -131,7 +140,7 @@
 									<li><a href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
 								</ul>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>
