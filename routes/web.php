@@ -33,10 +33,9 @@ Route::get('/product/{product}', [ProductController::class, 'show'])->name('prod
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/addtocart/{id}', [CartController::class, 'storeCart'])->name('cart.store');
-Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
-
+Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart/destroy', [CartController::class, 'destroy'])->name('cart.destroy');
 Route::get('/check', [CartController::class, 'check']);
-Route::post('/abcdef', [CartController::class, 'abcdef'])->name('abcdef');
 
 
 Auth::routes();

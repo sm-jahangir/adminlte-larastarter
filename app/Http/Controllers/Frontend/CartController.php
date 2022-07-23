@@ -14,9 +14,10 @@ class CartController extends Controller
         $CartContent = Cart::content();
         return view('frontend.cart', compact('CartContent'));
     }
-    public function abcdef(Request $request)
+    public function destroy()
     {
-        return $request->all();
+        Cart::destroy();
+        return redirect()->route('products.index');
     }
     public function storeCart(Request $request, $id)
     {
@@ -34,7 +35,7 @@ class CartController extends Controller
         $content = Cart::content();
         return response()->json($content);
     }
-    public function destroy($id)
+    public function remove($id)
     {
         Cart::remove($id);
 

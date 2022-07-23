@@ -12,6 +12,7 @@
 								<a class="breadcrumb-item" href="index.html">Home</a>
 								<span class="brd-separetor">/</span>
 								<span class="breadcrumb-item active">Cart</span>
+								{{-- <a href="{{ Cart::destroy() }}">Clear Cart</a> --}}
 							</nav>
 						</div>
 					</div>
@@ -27,6 +28,7 @@
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<form action="#">
 						<div class="table-content table-responsive">
+							<h2>Hello Cart: {{ Cart::content()->count() }}</h2>
 							<table>
 								<thead>
 									<tr>
@@ -49,10 +51,14 @@
 											<td class="product-price"><span class="amount">{{ $row->price }}</span></td>
 											<td class="product-quantity"><input type="number" value="{{ $row->qty }}" /></td>
 											<td class="product-subtotal">{{ $row->total }}</td>
-											<form action="{{ url('cart', [$row->rowId]) }}" method="POST">
+											<form action="{{ route('cart.remove', $row->rowId) }}" method="POST">
 												@method('DELETE')
 												@csrf
-												<td><button type="submit" class="btn btn-primary btn-sm">X</button></td>
+												@if (Cart::content()->count() == 1)
+													<td><a href="{{ route('cart.destroy') }}" class="btn btn-primary btn-sm">All Clear</a></td>
+												@else
+													<td><button type="submit" class="btn btn-primary btn-sm">X</button></td>
+												@endif
 											</form>
 
 										</tr>
