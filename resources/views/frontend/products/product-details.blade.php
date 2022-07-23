@@ -1,156 +1,186 @@
 @extends('layouts.app')
-@push('css')
-	<style>
-		.card {
-			border: none
-		}
-
-		.product {
-			background-color: #eee
-		}
-
-		.brand {
-			font-size: 13px
-		}
-
-		.act-price {
-			color: red;
-			font-weight: 700
-		}
-
-		.dis-price {
-			text-decoration: line-through
-		}
-
-		.about {
-			font-size: 14px
-		}
-
-		.color {
-			margin-bottom: 10px
-		}
-
-		label.radio {
-			cursor: pointer
-		}
-
-		label.radio input {
-			position: absolute;
-			top: 0;
-			left: 0;
-			visibility: hidden;
-			pointer-events: none
-		}
-
-		label.radio span {
-			padding: 2px 9px;
-			border: 2px solid #ff0000;
-			display: inline-block;
-			color: #ff0000;
-			border-radius: 3px;
-			text-transform: uppercase
-		}
-
-		label.radio input:checked+span {
-			border-color: #ff0000;
-			background-color: #ff0000;
-			color: #fff
-		}
-
-		.btn-danger {
-			background-color: #ff0000 !important;
-			border-color: #ff0000 !important
-		}
-
-		.btn-danger:hover {
-			background-color: #da0606 !important;
-			border-color: #da0606 !important
-		}
-
-		.btn-danger:focus {
-			box-shadow: none
-		}
-
-		.cart i {
-			margin-right: 10px
-		}
-
-	</style>
-@endpush
-@section('mainContent')
-	<div class="container mt-5 mb-5">
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-10">
-				<div class="card">
+@section('content')
+	<div>
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url({{ asset('assets/frontend/images/bg/2.jpg') }}) no-repeat scroll center center / cover ;">
+			<div class="ht__bradcaump__wrap">
+				<div class="container">
 					<div class="row">
-						<div class="col-md-6">
-							<div class="images p-3">
-								<div class="text-center p-4"> <img id="main-image" src="https://i.imgur.com/Dhebu4F.jpg" width="250" /> </div>
-								<div class="thumbnail text-center"> <img onclick="change_image(this)" src="https://i.imgur.com/Rx7uKd0.jpg" width="70"> <img onclick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg" width="70"> </div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="product p-4">
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="d-flex align-items-center">
-										<i class="fa fa-long-arrow-left"></i>
-										<span class="ml-1">{{ $product->brand->name }}</span>
-									</div>
-									<i class="fa fa-shopping-cart text-muted"></i>
-								</div>
-								<div class="mt-4 mb-3">
-									@foreach ($product->categories as $category)
-										<span class="text-uppercase text-muted brand">{{ $category->name }}</span>,
-									@endforeach
-									<h5 class="text-uppercase">{{ $product->title }}</h5>
-									<div class="price d-flex flex-row align-items-center"> <span class="act-price">${{ $product->sale_price }}</span>
-										<div class="ml-2"> <small class="dis-price">${{ $product->price }}</small> <span>40% OFF</span> </div>
-									</div>
-								</div>
-								<p class="about">{{ $product->excerpt }}</p>
-								<div class="sizes mt-5">
-									<h6 class="text-uppercase">Size</h6>
-
-									@foreach ($product->sizes as $size)
-										<label class="radio"> <input type="radio" name="size" value="{{ $size->id }}"> <span>{{ $size->name }}</span> </label>
-									@endforeach
-								</div>
-								<div class="sizes mt-1">
-									<h6 class="text-uppercase">Colors</h6>
-									@foreach ($product->colors as $color)
-										<label class="radio"> <input type="radio" name="color" value="{{ $color->id }}"> <span>{{ $color->name }}</span> </label>
-									@endforeach
-								</div>
-								<div class="cart mt-4 align-items-center">
-									<button class="btn btn-danger text-uppercase mr-2 px-4" id="addcart" data-id="{{ $product->id }}">Add to cart</button>
-									<button class="btn btn-danger text-uppercase mr-2 ms-2 px-4">Buy Now</button>
-									<i class="fa fa-heart text-muted"></i>
-									<i class="fa fa-share-alt text-muted"></i>
-								</div>
+						<div class="col-xs-12">
+							<div class="bradcaump__inner text-center">
+								<h2 class="bradcaump-title">Product Details</h2>
+								<nav class="bradcaump-inner">
+									<a class="breadcrumb-item" href="/">Home</a>
+									<span class="brd-separetor">/</span>
+									<a class="breadcrumb-item" href="{{ route('products.index') }}">Product</a>
+									<span class="brd-separetor">/</span>
+									<span class="breadcrumb-item active">{{ $product->title }}</span>
+								</nav>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- End Bradcaump area -->
+		<!-- Start Product Details -->
+		<section class="htc__product__details pt--120 pb--100 bg__white">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+						<div class="product__details__container">
+							<!-- Start Small images -->
+							<ul class="product__small__images" role="tablist">
+								<li role="presentation" class="pot-small-img active">
+									<a href="#img-tab-1" role="tab" data-toggle="tab">
+										<img width="120px" height="140px" src="{{ asset('storage/products/') . '/' . $product->featured_image }}" alt="small-image">
+									</a>
+								</li>
+								@foreach ($product->images as $key => $gallery)
+									<li role="presentation" class="pot-small-img">
+										<a href="#img-tab-{{ $key + 2 }}" role="tab" data-toggle="tab">
+											<img width="120px" height="140px" src="{{ asset('storage/product_gallery') . '/' . $gallery->image }}" alt="small-image">
+										</a>
+									</li>
+								@endforeach
+							</ul>
+							<!-- End Small images -->
+							<div class="product__big__images">
+								<div class="portfolio-full-image tab-content">
+									<div role="tabpanel" class="tab-pane fade in active product-video-position" id="img-tab-1">
+										<img src="{{ asset('storage/products/') . '/' . $product->featured_image }}" alt="full-image">
+										<div class="product-video">
+											<a class="video-popup" href="{{ $product->video_link }}">
+												<i class="zmdi zmdi-videocam"></i> View Video
+											</a>
+										</div>
+									</div>
+									@foreach ($product->images as $key => $gallery)
+										<div role="tabpanel" class="tab-pane fade product-video-position" id="img-tab-{{ $key + 2 }}">
+											<img src="{{ asset('storage/product_gallery') . '/' . $gallery->image }}" alt="full-image">
+											<div class="product-video">
+												<a class="video-popup" href="{{ $product->video_link }}">
+													<i class="zmdi zmdi-videocam"></i> View Video
+												</a>
+											</div>
+										</div>
+									@endforeach
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 smt-30 xmt-30">
+						<div class="htc__product__details__inner">
+							<div class="pro__detl__title">
+								<h2>{{ $product->title }}</h2>
+							</div>
+							<div class="pro__details">
+								<p>{{ $product->excerpt }}</p>
+							</div>
+							<ul class="pro__dtl__prize">
+								<li class="old__prize">${{ $product->price }}</li>
+								<li>${{ $product->sale_price }}</li>
+							</ul>
+							<div class="pro__dtl__color">
+								<h2 class="title__5">Choose Colour</h2>
+								<ul class="pro__choose__color">
+									<select class="form-control" style="width: 18%" name="" id="">
+										@foreach ($product->colors as $color)
+											<option value="">{{ $color->name }}</option>
+										@endforeach
+									</select>
+									{{-- <li class="blue"><a href="#"><i class="zmdi zmdi-circle"></i></a></li>
+									<li class="perpal"><a href="#"><i class="zmdi zmdi-circle"></i></a></li>
+									<li class="yellow"><a href="#"><i class="zmdi zmdi-circle"></i></a></li> --}}
+								</ul>
+							</div>
+							<div class="pro__dtl__size">
+								<h2 class="title__5">Size</h2>
+								<ul class="pro__choose__size">
+									<select class="form-control" style="width: 18%" name="" id="">
+										@foreach ($product->sizes as $size)
+											<option value="">{{ $size->name }}</option>
+										@endforeach
+									</select>
+								</ul>
+							</div>
+							<div class="product-action-wrap">
+								<div class="prodict-statas"><span>Quantity :</span></div>
+								<div class="product-quantity">
+									<form id='myform' method='POST' action='#'>
+										<div class="product-quantity">
+											<div class="cart-plus-minus">
+												<input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<ul class="pro__dtl__btn">
+								<li class="buy__now__btn"><a href="#">Buy Now</a></li>
+								<li class="buy__now__btn"><a href="#">Add to Cart</a></li>
+								<li><a href="#"><span class="ti-heart"></span></a></li>
+								<li><a href="#"><span class="ti-email"></span></a></li>
+							</ul>
+							<div class="pro__social__share">
+								<h2>Share :</h2>
+								<ul class="pro__soaial__link">
+									<li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
+									<li><a href="#"><i class="zmdi zmdi-instagram"></i></a></li>
+									<li><a href="#"><i class="zmdi zmdi-facebook"></i></a></li>
+									<li><a href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Product Details -->
+		<!-- Start Product tab -->
+		<section class="htc__product__details__tab bg__white pb--120">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+						<ul class="product__deatils__tab mb--60" role="tablist">
+							<li role="presentation" class="active">
+								<a href="#description" role="tab" data-toggle="tab">Description</a>
+							</li>
+							<li role="presentation">
+								<a href="#sheet" role="tab" data-toggle="tab">Featured</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="product__details__tab__content">
+							<!-- Start Single Content -->
+							<div role="tabpanel" id="description" class="product__tab__content fade in active">
+								<div class="product__description__wrap">
+									<div class="product__desc">
+										<h2 class="title__6">Details</h2>
+										<p>{!! $product->description !!}</p>
+									</div>
+								</div>
+							</div>
+							<!-- End Single Content -->
+							<!-- Start Single Content -->
+							<div role="tabpanel" id="sheet" class="product__tab__content fade">
+								<div class="pro__feature">
+									<h2 class="title__6">Featured List</h2>
+									<ul class="feature__list">
+										<li><a href="#"><i class="zmdi zmdi-play-circle"></i>No Featured list added in the backend</a></li>
+
+									</ul>
+								</div>
+							</div>
+							<!-- End Single Content -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Product tab -->
 	</div>
 @endsection
-@push('js')
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<script>
-	 $(document).ready(function() {
-	  $('#addcart').on('click', function() {
-	   var id = $(this).data('id');
-	   alert(id)
-	  })
-	 })
-	</script>
-	<script>
-	 function change_image(image) {
-	  var container = document.getElementById("main-image");
-	  container.src = image.src;
-	 }
-	 document.addEventListener("DOMContentLoaded", function(event) {});
-	</script>
-@endpush

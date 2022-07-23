@@ -29,7 +29,7 @@ Route::view('blog', 'frontend.blog');
 Route::view('checkout', 'frontend.checkout');
 Route::view('single-blog', 'frontend.single-blog');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-// Route::get('/product/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('products.show');
 // Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 // Route::get('/addtocart/{id}', [CartController::class, 'storeCart'])->name('cart.store');
 // Route::get('/check', [CartController::class, 'check']);

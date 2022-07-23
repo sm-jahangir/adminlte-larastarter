@@ -138,7 +138,7 @@
 											</div>
 										</div>
 										<div class="product__details">
-											<h2><a href="product-details.html">{{ $product->title }}</a></h2>
+											<h2><a href="{{ route('products.show', $product->id) }}">{{ $product->title }}</a></h2>
 											<ul class="product__price">
 												<li class="old__price">${{ $product->price }}.00</li>
 												<li class="new__price">${{ $product->sale_price }}.00</li>
