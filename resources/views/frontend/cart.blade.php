@@ -101,13 +101,13 @@
 												<td>
 													<ul id="shipping_method">
 														<li>
-															<input type="radio" />
+															<input type="radio" name="shipping" />
 															<label>
-																Flat Rate: <span class="amount">£7.00</span>
+																Flat Rate: <span class="amount">$7.00</span>
 															</label>
 														</li>
 														<li>
-															<input type="radio" />
+															<input type="radio" name="shipping" />
 															<label>
 																Free Shipping
 															</label>

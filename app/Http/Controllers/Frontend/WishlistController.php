@@ -34,10 +34,11 @@ class WishlistController extends Controller
         Cart::instance('wishlist')->destroy();
         return back()->with('success', 'Item has been destroy');
     }
-    public function moveProductWishlistToCart($id)
+    public function moveProductWishlistToCart(Request $request, $id)
     {
-        Cart::instance('wishlist')->merge('savedcart', $keepDiscount, $keepTaxrate, $dispatchAdd, 'savedcartinstance');
-        Cart::erase('wishlist');
+        $product = Product::findOrFail($id);
+        Cart::add($id, $product->title, 1, $product->price, $product->weight, ['image' => $product->featured_image]);
+        Cart::instance('wishlist')->remove($request->rowId);
         return back();
     }
 }

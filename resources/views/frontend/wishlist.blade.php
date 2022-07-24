@@ -58,7 +58,13 @@
 												<td class="product-price"><span class="amount">{{ $row->price }}</span></td>
 												<td class="product-stock-status"><span class="wishlist-in-stock">In
 														Stock</span></td>
-												<td class="product-add-to-cart"><a href="#"> Add to Cart</a></td>
+												<td class="product-add-to-cart">
+													<form action="{{ route('move.cart', $row->id) }}" method="post">
+														@csrf
+														<input type="hidden" name="rowId" value="{{ $row->rowId }}">
+														<button class="border-0" type="submit">Add to Cart</button>
+													</form>
+												</td>
 											</tr>
 										@endforeach
 									</tbody>

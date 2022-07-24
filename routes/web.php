@@ -43,8 +43,8 @@ Route::get('/check', [CartController::class, 'check']);
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index'); //show
 Route::get('/addtowishlist/{id}', [WishlistController::class, 'storeCart'])->name('wishlist.store'); //store
 Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove'); //remove
-Route::get('/wishlist/destroy', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
-
+Route::get('/wishlist/destroy', [WishlistController::class, 'destroy'])->name('wishlist.destroy'); //destroy all
+Route::post('/movetocart/{id}', [WishlistController::class, 'moveProductWishlistToCart'])->name('move.cart');
 
 Auth::routes();
 
