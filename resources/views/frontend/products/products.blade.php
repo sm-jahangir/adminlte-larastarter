@@ -131,7 +131,7 @@
 											</div>
 											<div class="product__hover__info">
 												<ul class="product__action">
-													<li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
+													<li><a data-toggle="modal" data-target="#productModal-{{ $product->id }}" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
 													<li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
 													<li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
 												</ul>
@@ -145,6 +145,85 @@
 											</ul>
 										</div>
 									</div>
+								</div>
+								<div id="quickview-wrapper">
+									<!-- Modal -->
+									<div class="modal fade" id="productModal-{{ $product->id }}" tabindex="-1" role="dialog">
+										<div class="modal-dialog modal__container" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												</div>
+												<div class="modal-body">
+													<div class="modal-product">
+														<!-- Start product images -->
+														<div class="product-images">
+															<div class="main-image images">
+																<img style="width: 600px" height="600px" alt="big images" src="{{ asset('storage/products/') . '/' . $product->featured_image }}">
+															</div>
+														</div>
+														<!-- end product images -->
+														<div class="product-info">
+															<h1>{{ $product->title }}</h1>
+
+															<div class="price-box-3">
+																<div class="s-price-box">
+																	<span class="new-price">${{ $product->sale_price }}.00</span>
+																	<span class="old-price">${{ $product->price }}.00</span>
+																</div>
+															</div>
+															<div class="quick-desc">
+																{{ $product->excerpt }}
+															</div>
+															<div class="select__color">
+																<h2 style="margin-right: 5px">Select color </h2>
+																<select class="form-control" style="width: 18%" name="color" id="">
+																	@foreach ($product->colors as $color)
+																		<option value="{{ $color->name }}">{{ $color->name }}</option>
+																	@endforeach
+																</select>
+															</div>
+															<div class="select__size">
+																<h2 style="margin-right: 5px">Select size </h2>
+																<select class="form-control" style="width: 18%" name="size" id="">
+																	@foreach ($product->sizes as $size)
+																		<option value="{{ $size->name }}">{{ $size->name }}</option>
+																	@endforeach
+																</select>
+															</div>
+															<div class="product-action-wrap">
+																<div class="prodict-statas"><span>Quantity :</span></div>
+																<div class="product-quantity">
+																	<div class="product-quantity">
+																		<div class="cart-plus-minus">
+																			<input class="cart-plus-minus-box" type="text" name="product_qty" value="1">
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="social-sharing">
+																<div class="widget widget_socialsharing_widget">
+																	<h3 class="widget-title-modal">Share this product</h3>
+																	<ul class="social-icons">
+																		<li><a target="_blank" title="rss" href="#" class="rss social-icon"><i class="zmdi zmdi-rss"></i></a></li>
+																		<li><a target="_blank" title="Linkedin" href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a>
+																		</li>
+																		<li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
+																		<li><a target="_blank" title="Tumblr" href="#" class="tumblr social-icon"><i class="zmdi zmdi-tumblr"></i></a></li>
+																		<li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
+																	</ul>
+																</div>
+															</div>
+															<div class="addtocart-btn">
+																<a href="#">Add to cart</a>
+															</div>
+														</div><!-- .product-info -->
+													</div><!-- .modal-product -->
+												</div><!-- .modal-body -->
+											</div><!-- .modal-content -->
+										</div><!-- .modal-dialog -->
+									</div>
+									<!-- END Modal -->
 								</div>
 							@endforeach
 
