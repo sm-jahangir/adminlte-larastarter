@@ -26,9 +26,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
-					<form action="#">
+					<div>
 						<div class="table-content table-responsive">
-							<h2>Hello Cart: {{ Cart::content()->count() }}</h2>
+							<h2>Cart Items: {{ Cart::content()->count() }}</h2>
+							<a href="{{ route('cart.destroy') }}" class="btn btn-primary btn-sm" style="float: right">Clear Cart</a>
 							<table>
 								<thead>
 									<tr>
@@ -49,16 +50,19 @@
 												<strong>Size: {{ $row->options->has('size') ? $row->options->size : '' }}</strong>
 											</td>
 											<td class="product-price"><span class="amount">{{ $row->price }}</span></td>
-											<td class="product-quantity"><input type="number" value="{{ $row->qty }}" /></td>
+											<td class="product-quantity">
+												<form action="{{ route('cart-update', $row->rowId) }}" method="POST">
+													@csrf
+													@method('PUT')
+													<input type="number" name="quantity" value="{{ $row->qty }}" />
+													<button type="submit">Update</button>
+												</form>
+											</td>
 											<td class="product-subtotal">{{ $row->total }}</td>
 											<form action="{{ route('cart.remove', $row->rowId) }}" method="POST">
 												@method('DELETE')
 												@csrf
-												@if (Cart::content()->count() == 1)
-													<td><a href="{{ route('cart.destroy') }}" class="btn btn-primary btn-sm">All Clear</a></td>
-												@else
-													<td><button type="submit" class="btn btn-primary btn-sm">X</button></td>
-												@endif
+												<td><button type="submit" class="btn btn-primary btn-sm">X</button></td>
 											</form>
 
 										</tr>
@@ -127,7 +131,7 @@
 								</div>
 							</div>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>

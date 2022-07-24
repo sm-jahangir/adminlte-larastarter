@@ -29,6 +29,12 @@ class CartController extends Controller
         // return response()->json(['success' => 'Product Added to Cart' . $id]);
         return back();
     }
+    public function update(Request $request, $id)
+    {
+        // Cart::update($rowId, 2);
+        Cart::update($id, $request->quantity);
+        return back();
+    }
     public function check()
     {
         // Cart::destroy();
