@@ -174,43 +174,37 @@
 					<a href="#"><i class="zmdi zmdi-close"></i></a>
 				</div>
 				<div class="shp__cart__wrap">
-					<div class="shp__single__product">
-						<div class="shp__pro__thumb">
-							<a href="#">
-								<img src="{{ asset('assets/frontend') }}/images/product/sm-img/1.jpg" alt="product images">
-							</a>
+
+					@foreach (Cart::content() as $row)
+						<div class="shp__single__product">
+							<div class="shp__pro__thumb">
+								<a href="#">
+									<img src="{{ $row->options->has('image') ? asset('storage/products/') . '/' . $row->options->image : "asset('assets/frontend/images/product/4.png')" }}" alt="product images">
+								</a>
+							</div>
+							<div class="shp__pro__details">
+								<h2><a href="product-details.html">{{ $row->name }}</a></h2>
+								<span class="quantity">QTY: {{ $row->qty }}</span>
+								<span class="shp__price">${{ $row->price }}.00</span>
+							</div>
+							<div class="remove__btn">
+								<form action="{{ route('cart.remove', $row->rowId) }}" method="POST">
+									@method('DELETE')
+									@csrf
+									<button type="submit" title="Remove this item" class="btn btn-primary btn-sm"><i class="zmdi zmdi-close"></i></button>
+								</form>
+
+							</div>
+
 						</div>
-						<div class="shp__pro__details">
-							<h2><a href="product-details.html">BO&Play Wireless Speaker</a></h2>
-							<span class="quantity">QTY: 1</span>
-							<span class="shp__price">$105.00</span>
-						</div>
-						<div class="remove__btn">
-							<a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-						</div>
-					</div>
-					<div class="shp__single__product">
-						<div class="shp__pro__thumb">
-							<a href="#">
-								<img src="{{ asset('assets/frontend') }}/images/product/sm-img/2.jpg" alt="product images">
-							</a>
-						</div>
-						<div class="shp__pro__details">
-							<h2><a href="product-details.html">Brone Candle</a></h2>
-							<span class="quantity">QTY: 1</span>
-							<span class="shp__price">$25.00</span>
-						</div>
-						<div class="remove__btn">
-							<a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-						</div>
-					</div>
+					@endforeach
 				</div>
 				<ul class="shoping__total">
 					<li class="subtotal">Subtotal:</li>
-					<li class="total__price">$130.00</li>
+					<li class="total__price">$<?php echo Cart::subtotal(); ?></li>
 				</ul>
 				<ul class="shopping__btn">
-					<li><a href="cart.html">View Cart</a></li>
+					<li><a href="{{ url('/cart') }}">View Cart</a></li>
 					<li class="shp__checkout"><a href="checkout.html">Checkout</a></li>
 				</ul>
 			</div>

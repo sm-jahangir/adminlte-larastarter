@@ -3,6 +3,7 @@
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\ProductController;
+use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -37,6 +38,12 @@ Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remov
 Route::put('cart-update/{id}', [CartController::class, 'update'])->name('cart-update');
 Route::get('/cart/destroy', [CartController::class, 'destroy'])->name('cart.destroy');
 Route::get('/check', [CartController::class, 'check']);
+
+// Wishlist
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index'); //show
+Route::get('/addtowishlist/{id}', [WishlistController::class, 'storeCart'])->name('wishlist.store'); //store
+Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove'); //remove
+Route::get('/wishlist/destroy', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
 
 
 Auth::routes();

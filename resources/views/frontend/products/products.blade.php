@@ -133,7 +133,7 @@
 												<ul class="product__action">
 													<li><a data-toggle="modal" data-target="#productModal-{{ $product->id }}" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
 													<li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-													<li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+													<li><a title="Wishlist" href="{{ route('wishlist.store', $product->id) }}"><span class="ti-heart"></span></a></li>
 												</ul>
 											</div>
 										</div>
