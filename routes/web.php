@@ -51,6 +51,7 @@ Route::get('/destroysavedforLater', [CartController::class, 'destroysavedforLate
 Route::delete('/cart/saveforlaterremove/{id}', [CartController::class, 'saveforlaterremove'])->name('cart.saveforlaterremove'); //Remove
 Route::post('/movesavedforlatertocart/{id}', [CartController::class, 'moveProductSaveforlaterToCart'])->name('move.moveProductSaveforlaterToCart'); // Move to Cart
 
+Route::post('coupon/apply', [CartController::class, 'applyCouponCode'])->name('apply.coupon');
 
 Auth::routes();
 

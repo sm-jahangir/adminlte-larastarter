@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -21,9 +23,9 @@ class CartController extends Controller
     public function storeCart(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        Cart::add($id, $product->title, $request->product_qty, $product->price, $product->weight, ['image' => $product->featured_image, 'color' => $request->color, 'size' => $request->size,]);
+        Cart::add($id, $product->title, $request->product_qty, $product->sale_price, $product->weight, ['image' => $product->featured_image, 'color' => $request->color, 'size' => $request->size,]);
 
-        // $carts = Cart::add(['id' => $id, 'name' => $product->title, 'qty' => 1, 'price' => $product->price, 'weight' => 550, 'options' => ['featured_image' => $product->featured_image]]);
+        // $carts = Cart::add(['id' => $id, 'name' => $product->title, 'qty' => 1, 'price' => $product->sale_price, 'weight' => 550, 'options' => ['featured_image' => $product->featured_image]]);
         // Cart::add([$carts]);
         // return response()->json(['success' => 'Product Added to Cart' . $id]);
         return back();
@@ -56,7 +58,7 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($id);
         // return $product;
-        Cart::instance('savedforlater')->add($id, $product->title, 1, $product->price, $product->weight, ['image' => $product->featured_image, 'color' => $request->color, 'size' => $request->size]);
+        Cart::instance('savedforlater')->add($id, $product->title, 1, $product->sale_price, $product->weight, ['image' => $product->featured_image, 'color' => $request->color, 'size' => $request->size]);
         // Cart::remove($request->rowId);
         return back();
     }
@@ -76,8 +78,44 @@ class CartController extends Controller
     public function moveProductSaveforlaterToCart(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        Cart::add($id, $product->title, $request->product_qty, $product->price, $product->weight, ['image' => $product->featured_image, 'color' => $request->color, 'size' => $request->size,]);
+        Cart::add($id, $product->title, $request->product_qty, $product->sale_price, $product->weight, ['image' => $product->featured_image, 'color' => $request->color, 'size' => $request->size,]);
         Cart::instance('savedforlater')->remove($request->rowId);
         return back();
+    }
+    public function applyCouponCode(Request $request)
+    {
+
+        // $coupon = $request->coupon_code;
+        // $check = Coupon::where('code', $coupon)->first();
+        // if ($check) {
+        //     Session::put('code', [
+        //         'name' => $check->code,
+        //         'discount' => $check->value,
+        //         'balance' => Cart::subtotal() - $check->value,
+        //     ]);
+        // } else {
+        // }
+
+
+
+
+
+        //First time try;
+        $coupon = Coupon::where('code', $request->coupon_code)->first();
+        if ($coupon) {
+            if ($coupon->type == 'fixed') {
+                $subTotalAmount = Cart::subtotal();
+                $couponAmount = $coupon->value;
+                $couponsotangso = $couponAmount / $subTotalAmount;
+                $couponParcent = $couponsotangso * 100;
+
+                Cart::setGlobalDiscount($couponParcent);
+            } else {
+                Cart::setGlobalDiscount($coupon->value);
+            }
+        } else {
+            return back()->with('Error', 'Coupon Code is Invalid');
+        }
+        return back()->with('success', 'Coupon Code is Valid');
     }
 }

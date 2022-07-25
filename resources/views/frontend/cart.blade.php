@@ -25,6 +25,15 @@
 	<div class="cart-main-area ptb--120 bg__white">
 		<div class="container">
 			<div class="row">
+				<div>
+					@if (\Session::has('success'))
+						<div class="alert alert-success">
+							<ul>
+								<li>{!! \Session::get('success') !!}</li>
+							</ul>
+						</div>
+					@endif
+				</div>
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div>
 						<div class="table-content table-responsive">
@@ -67,7 +76,7 @@
 													<button type="submit" class="btn btn-primary btn-sm">SavedForLater</button>
 												</form>
 											</td>
-											<td class="product-subtotal">{{ $row->total }}</td>
+											<td class="product-subtotal">{{ $row->price * $row->qty }}</td>
 											<form action="{{ route('cart.remove', $row->rowId) }}" method="POST">
 												@method('DELETE')
 												@csrf
@@ -88,8 +97,11 @@
 								<div class="coupon">
 									<h3>Coupon</h3>
 									<p>Enter your coupon code if you have one.</p>
-									<input type="text" placeholder="Coupon code" />
-									<input type="submit" value="Apply Coupon" />
+									<form action="{{ route('apply.coupon') }}" method="post">
+										@csrf
+										<input type="text" name="coupon_code" placeholder="Coupon code" />
+										<input type="submit" value="Apply Coupon" />
+									</form>
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-5 col-xs-12">
@@ -98,12 +110,16 @@
 									<table>
 										<tbody>
 											<tr class="cart-subtotal">
-												<th>Subtotal</th>
-												<td><span class="amount"><?php echo Cart::subtotal(); ?></span></td>
+												<th>Discount</th>
+												<td><span class="amount">${{ Cart::discount() }}</span></td>
 											</tr>
 											<tr class="cart-subtotal">
 												<th>Tax</th>
-												<td><span class="amount"><?php echo Cart::tax(); ?></span></td>
+												<td><span class="amount">{{ config('cart.tax') }}%</span></td>
+											</tr>
+											<tr class="cart-subtotal">
+												<th>Subtotal</th>
+												<td><span class="amount"><?php echo Cart::subtotal(); ?></span></td>
 											</tr>
 											<tr class="shipping">
 												<th>Shipping</th>

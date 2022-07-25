@@ -25,7 +25,7 @@ class WishlistController extends Controller
     {
         $product = Product::findOrFail($id);
         // return $product;
-        Cart::instance('wishlist')->add($id, $product->title, 1, $product->price, $product->weight, ['image' => $product->featured_image]);
+        Cart::instance('wishlist')->add($id, $product->title, 1, $product->sale_price, $product->weight, ['image' => $product->featured_image]);
         return back();
     }
 
@@ -37,7 +37,7 @@ class WishlistController extends Controller
     public function moveProductWishlistToCart(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        Cart::add($id, $product->title, 1, $product->price, $product->weight, ['image' => $product->featured_image]);
+        Cart::add($id, $product->title, 1, $product->sale_price, $product->weight, ['image' => $product->featured_image]);
         Cart::instance('wishlist')->remove($request->rowId);
         return back();
     }
