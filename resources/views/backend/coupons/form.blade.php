@@ -56,20 +56,9 @@
 												@enderror
 											</div>
 										</div>
-
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="type">Coupons type</label>
-												<select class="form-control" name="type" id="type">
-													<option value="fixed" @isset($coupon) {{ $coupon->type == 'fixed' ? 'selected' : '' }} @endisset>Fixed</option>
-													<option value="parcent" @isset($coupon) {{ $coupon->type == 'parcent' ? 'selected' : '' }} @endisset>Parcent</option>
-
-												</select>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label for="value">Coupons Value</label>
+												<label for="value">Parcetange</label>
 												<input type="number" class="form-control @error('value') is-invalid @enderror" name="value" id="value" value="{{ $coupon->value ?? '' }}" placeholder="Enter value Name" />
 												@error('value')
 													<span class="invalid-feedback" role="alert">

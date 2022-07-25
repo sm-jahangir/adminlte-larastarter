@@ -40,7 +40,6 @@ class CouponController extends Controller
         // return $request;
         Coupon::create([
             'code' => $request->code,
-            'type' => $request->type,
             'value' => $request->value,
             'cart_value' => $request->cart_value,
         ]);
@@ -82,7 +81,6 @@ class CouponController extends Controller
         // return $request;
         $coupon->update([
             'code' => $request->code,
-            'type' => $request->type,
             'value' => $request->value,
             'cart_value' => $request->cart_value,
         ]);

@@ -84,35 +84,10 @@ class CartController extends Controller
     }
     public function applyCouponCode(Request $request)
     {
-
-        // $coupon = $request->coupon_code;
-        // $check = Coupon::where('code', $coupon)->first();
-        // if ($check) {
-        //     Session::put('code', [
-        //         'name' => $check->code,
-        //         'discount' => $check->value,
-        //         'balance' => Cart::subtotal() - $check->value,
-        //     ]);
-        // } else {
-        // }
-
-
-
-
-
         //First time try;
         $coupon = Coupon::where('code', $request->coupon_code)->first();
         if ($coupon) {
-            if ($coupon->type == 'fixed') {
-                $subTotalAmount = Cart::subtotal();
-                $couponAmount = $coupon->value;
-                $couponsotangso = $couponAmount / $subTotalAmount;
-                $couponParcent = $couponsotangso * 100;
-
-                Cart::setGlobalDiscount($couponParcent);
-            } else {
-                Cart::setGlobalDiscount($coupon->value);
-            }
+            Cart::setGlobalDiscount($coupon->value);
         } else {
             return back()->with('Error', 'Coupon Code is Invalid');
         }
