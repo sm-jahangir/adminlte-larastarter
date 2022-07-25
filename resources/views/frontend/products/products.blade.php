@@ -132,7 +132,15 @@
 											<div class="product__hover__info">
 												<ul class="product__action">
 													<li><a data-toggle="modal" data-target="#productModal-{{ $product->id }}" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-													<li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
+													<li>
+
+														<form action="{{ route('cart.store', $product->id) }}" method="get">
+															@csrf
+															<input type="hidden" name="product_qty" value="1">
+															<button style="border: none;background-color: transparent;" type="submit"><span class="ti-shopping-cart" style="font-size: 19px;"></span></button>
+														</form>
+													</li>
+
 													<li><a title="Wishlist" href="{{ route('wishlist.store', $product->id) }}"><span class="ti-heart"></span></a></li>
 												</ul>
 											</div>
@@ -163,7 +171,8 @@
 															</div>
 														</div>
 														<!-- end product images -->
-														<div class="product-info">
+														<form action="{{ route('cart.store', $product->id) }}" method="get" class="product-info">
+															@csrf
 															<h1>{{ $product->title }}</h1>
 
 															<div class="price-box-3">
@@ -215,9 +224,9 @@
 																</div>
 															</div>
 															<div class="addtocart-btn">
-																<a href="#">Add to cart</a>
+																<button type="submit">Add to cart</button>
 															</div>
-														</div><!-- .product-info -->
+														</form><!-- .product-info -->
 													</div><!-- .modal-product -->
 												</div><!-- .modal-body -->
 											</div><!-- .modal-content -->

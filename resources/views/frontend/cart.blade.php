@@ -47,7 +47,8 @@
 											<td class="product-thumbnail"><a href="#"><img src="{{ $row->options->has('image') ? asset('storage/products/') . '/' . $row->options->image : "asset('assets/frontend/images/product/4.png')" }}" alt="product img" /></a></td>
 											<td class="product-name">
 												<strong>{{ $row->name }}</strong><br>
-												<strong>Size: {{ $row->options->has('size') ? $row->options->size : '' }}</strong>
+												<strong>Size: {{ $row->options->has('size') ? $row->options->size : '' }}</strong><br>
+												<strong>Colors: {{ $row->options->has('color') ? $row->options->color : '' }}</strong>
 											</td>
 											<td class="product-price"><span class="amount">{{ $row->price }}</span></td>
 											<td class="product-quantity">
