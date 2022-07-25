@@ -45,6 +45,12 @@ Route::get('/addtowishlist/{id}', [WishlistController::class, 'storeCart'])->nam
 Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove'); //remove
 Route::get('/wishlist/destroy', [WishlistController::class, 'destroy'])->name('wishlist.destroy'); //destroy all
 Route::post('/movetocart/{id}', [WishlistController::class, 'moveProductWishlistToCart'])->name('move.cart');
+// Saved For Later Cart Instance
+Route::post('/addtosaveforlater/{id}', [CartController::class, 'storeSavedforLater'])->name('cart.storeSavedforLater');
+Route::get('/destroysavedforLater', [CartController::class, 'destroysavedforLater'])->name('cart.destroysavedforLater'); //Destroy
+Route::delete('/cart/saveforlaterremove/{id}', [CartController::class, 'saveforlaterremove'])->name('cart.saveforlaterremove'); //Remove
+Route::post('/movesavedforlatertocart/{id}', [CartController::class, 'moveProductSaveforlaterToCart'])->name('move.moveProductSaveforlaterToCart'); // Move to Cart
+
 
 Auth::routes();
 

@@ -11,8 +11,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        $CartContent = Cart::content();
-        return view('frontend.cart', compact('CartContent'));
+        return view('frontend.cart');
     }
     public function destroy()
     {
@@ -46,5 +45,39 @@ class CartController extends Controller
         Cart::remove($id);
 
         return back()->with('success', 'Item has been removed');
+    }
+    /**
+     * *****************************************************
+     *          Saved For Later Instance
+     * *****************************************************
+     */
+
+    public function storeSavedforLater(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        // return $product;
+        Cart::instance('savedforlater')->add($id, $product->title, 1, $product->price, $product->weight, ['image' => $product->featured_image, 'color' => $request->color, 'size' => $request->size]);
+        // Cart::remove($request->rowId);
+        return back();
+    }
+
+    public function destroysavedforLater()
+    {
+        Cart::instance('savedforlater')->destroy();
+        return back()->with('success', 'Item has been destroy');
+    }
+
+    public function saveforlaterremove($id)
+    {
+        Cart::instance('savedforlater')->remove($id);
+        return back()->with('success', 'Item has been removed');
+    }
+
+    public function moveProductSaveforlaterToCart(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        Cart::add($id, $product->title, $request->product_qty, $product->price, $product->weight, ['image' => $product->featured_image, 'color' => $request->color, 'size' => $request->size,]);
+        Cart::instance('savedforlater')->remove($request->rowId);
+        return back();
     }
 }
