@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\WishlistController;
@@ -54,7 +55,9 @@ Route::post('/movesavedforlatertocart/{id}', [CartController::class, 'moveProduc
 Route::post('coupon/apply', [CartController::class, 'applyCouponCode'])->name('apply.coupon');
 
 // Route::view('checkout', 'frontend.checkout')->name('checkout');
-Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::get('checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+Route::post('place/order', [CheckoutController::class, 'placeorder'])->name('place.order');
+Route::view('thank-you', 'frontend.thank-you')->name('order.thank-you');
 
 Auth::routes();
 

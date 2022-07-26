@@ -95,12 +95,4 @@ class CartController extends Controller
         }
         return back()->with('success', 'Coupon Code is Valid');
     }
-    public function checkout(Request $request)
-    {
-        if (Auth::check()) {
-            return view('frontend.checkout');
-        } else {
-            return redirect()->route('login');
-        }
-    }
 }

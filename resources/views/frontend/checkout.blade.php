@@ -25,45 +25,91 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-lg-8">
-					<div class="ckeckout-left-sidebar">
+					<form class="ckeckout-left-sidebar" action="{{ route('place.order') }}" method="POST">
+						@csrf
 						<!-- Start Checkbox Area -->
 						<div class="checkout-form">
 							<h2 class="section-title-3">Billing details</h2>
 							<div class="checkout-form-inner">
-								<div class="single-checkout-box">
-									<input type="text" placeholder="First Name*">
-									<input type="text" placeholder="Last Name*">
+								<div class="billing-address-default">
+
+									<div class="single-checkout-box">
+										<input type="text" name="firstname" placeholder="First Name*">
+										<input type="text" name="lastname" placeholder="Last Name*">
+									</div>
+									<div class="single-checkout-box">
+										<input type="email" name="email" placeholder="Emil*">
+										<input type="text" name="phone" placeholder="Phone*">
+									</div>
+									<div class="single-checkout-box select-option">
+										<select name="country">
+											<option value="bangladesh">Bangladesh</option>
+											<option value="india">India</option>
+											<option value="pakistan">Pakistan</option>
+											<option value="china">China</option>
+										</select>
+										<input type="text" name="province" placeholder="province/Distric">
+									</div>
+									<div class="single-checkout-box">
+										<input type="text" name="line1" placeholder="line1">
+										<input type="text" name="zipcode" placeholder="Zip Code*">
+									</div>
+									<div class="single-checkout-box">
+										<input type="text" name="city" placeholder="city">
+										<input type="text" name="line2" placeholder="line2(Optinal)">
+									</div>
+
 								</div>
-								<div class="single-checkout-box">
-									<input type="email" placeholder="Emil*">
-									<input type="text" placeholder="Phone*">
+								<div style="margin-bottom: 50px;" class="single-checkout-box checkbox">
+									<input id="sDACheckBox" name="is_shipping_different" type="checkbox" onclick="sDAFunction()">
+									<label for="sDACheckBox"><span></span>Shopping Different Address ?</label>
 								</div>
-								<div class="single-checkout-box">
-									<textarea name="message" placeholder="Message*"></textarea>
+								{{-- Shipping Diffrent Address Start --}}
+								<div style="display: none" id="sDAForm">
+									<div class="billing-address-diffrent">
+										<div class="single-checkout-box">
+											<input type="text" name="s_firstname" placeholder="First Name*">
+											<input type="text" name="s_lastname" placeholder="Last Name*">
+										</div>
+										<div class="single-checkout-box">
+											<input type="email" name="s_email" placeholder="Emil*">
+											<input type="text" name="s_phone" placeholder="Phone*">
+										</div>
+										<div class="single-checkout-box select-option">
+											<select name="s_country">
+												<option value="bangladesh">Bangladesh</option>
+												<option value="india">India</option>
+												<option value="pakistan">Pakistan</option>
+												<option value="china">China</option>
+											</select>
+											<input type="text" name="s_province" placeholder="province/Distric">
+										</div>
+										<div class="single-checkout-box">
+											<input type="text" name="s_line1" placeholder="line1">
+											<input type="text" name="s_zipcode" placeholder="Zip Code*">
+										</div>
+										<div class="single-checkout-box">
+											<input type="text" name="s_city" placeholder="city">
+											<input type="text" name="s_line2" placeholder="line2(Optinal)">
+										</div>
+
+									</div>
 								</div>
-								<div class="single-checkout-box select-option mt--40">
-									<select>
-										<option>Country*</option>
-										<option>Bangladesh</option>
-										<option>Bangladesh</option>
-										<option>Bangladesh</option>
-										<option>Bangladesh</option>
-									</select>
-									<input type="text" placeholder="Company Name*">
-								</div>
-								<div class="single-checkout-box">
-									<input type="email" placeholder="State*">
-									<input type="text" placeholder="Zip Code*">
-								</div>
-								<div class="single-checkout-box checkbox">
-									<input id="remind-me" type="checkbox">
-									<label for="remind-me"><span></span>Create a Account ?</label>
-								</div>
+								{{-- Shipping Diffrent Address End --}}
+								@guest
+									<div class="single-checkout-box checkbox">
+										<input id="checkNewAccount" type="checkbox" name="new_account" onclick="newAccountCheck()">
+										<label for="checkNewAccount"><span></span>Create a Account ?</label>
+									</div>
+									<div id="newAccountPasswordForm" style="display: none" class="single-checkout-box">
+										<input type="password" name="new_password" placeholder="Enter Password*">
+									</div>
+								@endguest
 							</div>
 						</div>
 						<!-- End Checkbox Area -->
 						<!-- Start Payment Box -->
-						<div class="payment-form">
+						{{-- <div class="payment-form">
 							<h2 class="section-title-3">payment details</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur kgjhyt</p>
 							<div class="payment-form-inner">
@@ -82,24 +128,49 @@
 									<input type="text" placeholder="Security Code*">
 								</div>
 							</div>
-						</div>
+						</div> --}}
 						<!-- End Payment Box -->
 						<!-- Start Payment Way -->
-						<div class="our-payment-sestem">
-							<h2 class="section-title-3">We Accept :</h2>
-							<ul class="payment-menu">
-								<li><a href="#"><img src="{{ asset('assets/frontend') }}/images/payment/1.jpg" alt="payment-img"></a></li>
-								<li><a href="#"><img src="{{ asset('assets/frontend') }}/images/payment/2.jpg" alt="payment-img"></a></li>
-								<li><a href="#"><img src="{{ asset('assets/frontend') }}/images/payment/3.jpg" alt="payment-img"></a></li>
-								<li><a href="#"><img src="{{ asset('assets/frontend') }}/images/payment/4.jpg" alt="payment-img"></a></li>
-								<li><a href="#"><img src="{{ asset('assets/frontend') }}/images/payment/5.jpg" alt="payment-img"></a></li>
-							</ul>
-							<div class="checkout-btn">
-								<a class="ts-btn btn-light btn-large hover-theme" href="#">CONFIRM & BUY NOW</a>
+						<div class="border-2">
+							<div class="row">
+								<div class="col-md-6">
+									<strong>PAYMENT METHOD:</strong>
+									<hr>
+									<div style="margin-left: 25px;">
+										<div class="single-checkout-box checkbox">
+											<input name="payment_method" value="cod" id="cod" type="radio">
+											<label for="cod"><span></span>Cash On Delivery</label>
+										</div>
+										<div class="single-checkout-box checkbox">
+											<input name="payment_method" value="paypal" id="paypal" type="radio">
+											<label for="paypal"><span></span>Paypal Payment</label>
+										</div>
+										<div class="single-checkout-box checkbox">
+											<input name="payment_method" value="debitcreadit" id="debitcreadit" type="radio">
+											<label for="debitcreadit"><span></span>Debit/Creadit Card</label>
+										</div>
+										<div class="single-checkout-box checkbox">
+											<input name="payment_method" value="ssl" id="ssl" type="radio">
+											<label for="ssl"><span></span>SSL Commerce</label>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<strong>PAYMENT METHOD:</strong>
+									<hr>
+									<div style="margin-left: 10px;">
+										<p>Flat Rate</p>
+										<p>Fixed $15</p>
+									</div>
+								</div>
 							</div>
 						</div>
+
+						<div class="checkout-btn">
+							<button class="btn btn-primary" type="submit">CONFIRM & BUY NOW</button>
+						</div>
 						<!-- End Payment Way -->
-					</div>
+					</form>
 				</div>
 				<div class="col-md-4 col-lg-4">
 					<div class="checkout-right-sidebar">
@@ -125,3 +196,26 @@
 	</section>
 	<!-- End Checkout Area -->
 @endsection
+@push('js')
+	<script>
+	 function newAccountCheck() {
+	  var checkBox = document.getElementById("checkNewAccount");
+	  var newAccountPasswordForm = document.getElementById("newAccountPasswordForm");
+	  if (checkBox.checked == true) {
+	   newAccountPasswordForm.style.display = "block";
+	  } else {
+	   newAccountPasswordForm.style.display = "none";
+	  }
+	 }
+
+	 function sDAFunction() {
+	  var checkBox = document.getElementById("sDACheckBox");
+	  var sDAForm = document.getElementById("sDAForm");
+	  if (checkBox.checked == true) {
+	   sDAForm.style.display = "block";
+	  } else {
+	   sDAForm.style.display = "none";
+	  }
+	 }
+	</script>
+@endpush

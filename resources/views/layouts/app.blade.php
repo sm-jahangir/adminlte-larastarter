@@ -63,7 +63,7 @@
 	<script src="{{ asset('assets/frontend') }}/js/waypoints.min.js"></script>
 	<!-- Main js file that contents all jQuery plugins activation. -->
 	<script src="{{ asset('assets/frontend') }}/js/main.js"></script>
-
+	@stack('js')
 </body>
 
 </html>
