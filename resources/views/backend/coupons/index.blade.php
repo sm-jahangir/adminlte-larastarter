@@ -50,7 +50,7 @@
 											<tr>
 												<th class="text-center">#</th>
 												<th class="text-center">Code</th>
-												<th class="text-center">Joined At</th>
+												<th class="text-center">Expiry Date</th>
 												<th class="text-center">Actions</th>
 											</tr>
 										</thead>
@@ -61,7 +61,7 @@
 													<td class="text-center">
 														{{ $coupon->code }}
 													</td>
-													<td class="text-center">{{ $coupon->created_at->diffForHumans() }}</td>
+													<td class="text-center">{{ $coupon->expiry_date }}</td>
 													<td class="text-center">
 														<a class="btn btn-info btn-sm" href="{{ route('app.coupons.edit', $coupon->id) }}"><i class="fas fa-edit"></i>
 															<span>Edit</span>

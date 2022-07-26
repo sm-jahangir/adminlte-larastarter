@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
@@ -85,11 +86,11 @@ class CartController extends Controller
     public function applyCouponCode(Request $request)
     {
         //First time try;
-        $coupon = Coupon::where('code', $request->coupon_code)->first();
+        $coupon = Coupon::where('code', $request->coupon_code)->where('expiry_date', '>=', Carbon::today())->first();
         if ($coupon) {
             Cart::setGlobalDiscount($coupon->value);
         } else {
-            return back()->with('Error', 'Coupon Code is Invalid');
+            return back()->with('error', 'Coupon Code is Invalid');
         }
         return back()->with('success', 'Coupon Code is Valid');
     }

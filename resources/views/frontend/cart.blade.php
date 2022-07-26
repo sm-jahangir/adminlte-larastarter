@@ -26,6 +26,13 @@
 		<div class="container">
 			<div class="row">
 				<div>
+					@if (\Session::has('error'))
+						<div class="alert alert-success">
+							<ul>
+								<li>{!! \Session::get('error') !!}</li>
+							</ul>
+						</div>
+					@endif
 					@if (\Session::has('success'))
 						<div class="alert alert-success">
 							<ul>
@@ -91,7 +98,6 @@
 						<div class="row">
 							<div class="col-md-8 col-sm-7 col-xs-12">
 								<div class="buttons-cart">
-									<input type="submit" value="Update Cart" />
 									<a href="#">Continue Shopping</a>
 								</div>
 								<div class="coupon">
@@ -151,7 +157,7 @@
 										</tbody>
 									</table>
 									<div class="wc-proceed-to-checkout">
-										<a href="checkout.html">Proceed to Checkout</a>
+										<a href="{{ route('checkout') }}">Proceed to Checkout</a>
 									</div>
 								</div>
 							</div>

@@ -42,6 +42,7 @@ class CouponController extends Controller
             'code' => $request->code,
             'value' => $request->value,
             'cart_value' => $request->cart_value,
+            'expiry_date' => $request->expiry_date,
         ]);
         notify()->success('Coupon Successfully Added.', 'Added');
         return redirect()->route('app.coupons.index');
@@ -83,6 +84,7 @@ class CouponController extends Controller
             'code' => $request->code,
             'value' => $request->value,
             'cart_value' => $request->cart_value,
+            'expiry_date' => $request->expiry_date,
         ]);
         notify()->success('Coupon Successfully Added.', 'Added');
         return redirect()->route('app.coupons.index');

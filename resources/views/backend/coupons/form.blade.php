@@ -78,6 +78,17 @@
 												@enderror
 											</div>
 										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="expiry_date">Expiry Date</label>
+												<input type="date" class="form-control @error('expiry_date') is-invalid @enderror" name="expiry_date" id="expiry_date" value="{{ $coupon->expiry_date ?? '' }}" placeholder="Enter expiry_date Name" />
+												@error('expiry_date')
+													<span class="invalid-feedback" role="alert">
+														<strong>{{ $message }}</strong>
+													</span>
+												@enderror
+											</div>
+										</div>
 									</div>
 								</div>
 								<div class="card-footer text-muted">
