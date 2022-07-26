@@ -53,7 +53,8 @@ Route::post('/movesavedforlatertocart/{id}', [CartController::class, 'moveProduc
 
 Route::post('coupon/apply', [CartController::class, 'applyCouponCode'])->name('apply.coupon');
 
-Route::view('checkout', 'frontend.checkout')->name('checkout');
+// Route::view('checkout', 'frontend.checkout')->name('checkout');
+Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
 
 Auth::routes();
 

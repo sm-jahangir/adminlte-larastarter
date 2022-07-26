@@ -8,6 +8,7 @@ use App\Models\Coupon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
@@ -93,5 +94,13 @@ class CartController extends Controller
             return back()->with('error', 'Coupon Code is Invalid');
         }
         return back()->with('success', 'Coupon Code is Valid');
+    }
+    public function checkout(Request $request)
+    {
+        if (Auth::check()) {
+            return view('frontend.checkout');
+        } else {
+            return redirect()->route('login');
+        }
     }
 }
