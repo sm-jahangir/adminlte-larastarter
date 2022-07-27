@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Stripe\Charge;
+use Stripe\Stripe;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Shipping;
+use App\Models\OrderItem;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\Shipping;
-use App\Models\Transaction;
-use App\Models\User;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckoutController extends Controller
 {
@@ -23,11 +25,6 @@ class CheckoutController extends Controller
         } else {
             return redirect()->route('products.index');
         }
-        // if (Auth::check()) {
-        //     return view('frontend.checkout');
-        // } else {
-        //     return redirect()->route('login');
-        // }
     }
     public function placeorder(Request $request)
     {
@@ -95,6 +92,21 @@ class CheckoutController extends Controller
                     'status' => 'pending',
 
                 ]);
+            } else {
+                Transaction::create([
+                    'user_id' => $new_user->id,
+                    'order_id' => $order->id,
+                    'mode' => 'card',
+                    'status' => 'approved',
+
+                ]);
+                Stripe::setApiKey(env('STRIPE_SECRET'));
+                Charge::create([
+                    "amount" => round(Cart::total()) * 100,
+                    "currency" => "usd",
+                    "source" => $request->stripeToken,
+                    "description" => "This payment is tested purpose"
+                ]);
             }
         } elseif (!Auth::check() && $request->new_account == false) {
 
@@ -158,6 +170,21 @@ class CheckoutController extends Controller
                     'status' => 'pending',
 
                 ]);
+            } else {
+                Transaction::create([
+                    'user_id' => 3,
+                    'order_id' => $order->id,
+                    'mode' => 'card',
+                    'status' => 'approved',
+
+                ]);
+                Stripe::setApiKey(env('STRIPE_SECRET'));
+                Charge::create([
+                    "amount" => round(Cart::total()) * 100,
+                    "currency" => "usd",
+                    "source" => $request->stripeToken,
+                    "description" => "This payment is tested purpose"
+                ]);
             }
         }
         #If Authenticated User Checkout
@@ -215,6 +242,21 @@ class CheckoutController extends Controller
                     'mode' => 'cod',
                     'status' => 'pending',
 
+                ]);
+            } else {
+                Transaction::create([
+                    'user_id' => Auth::user()->id,
+                    'order_id' => $order->id,
+                    'mode' => 'card',
+                    'status' => 'approved',
+
+                ]);
+                Stripe::setApiKey(env('STRIPE_SECRET'));
+                Charge::create([
+                    "amount" => round(Cart::total()) * 100,
+                    "currency" => "usd",
+                    "source" => $request->stripeToken,
+                    "description" => "This payment is tested purpose"
                 ]);
             }
         }
