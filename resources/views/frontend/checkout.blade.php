@@ -51,7 +51,13 @@
 						@csrf
 						<!-- Start Checkbox Area -->
 						<div class="checkout-form">
-							<h2 class="section-title-3">Billing details</h2>
+							<div style="display: flex;">
+								<h2 class="section-title-3">Billing details</h2>
+								<strong style="margin-left: 30px;
+								margin-top: 10px;
+								color: red;">Better Services for login</strong>
+								<a class="btn btn-sm btn-primary" href="/login" style="margin-left: 10px; margin-top: 10px;">Login</a>
+							</div>
 							<div class="checkout-form-inner">
 								<div class="billing-address-default">
 
@@ -60,7 +66,12 @@
 										<input type="text" name="lastname" placeholder="Last Name*">
 									</div>
 									<div class="single-checkout-box">
-										<input type="email" name="email" placeholder="Emil*">
+										@if (Auth::user())
+											<input type="email" name="email" readonly value="{{ Auth::user()->email }}" placeholder="Emil*">
+										@else
+											<input type="email" name="email" placeholder="Emil*">
+										@endif
+
 										<input type="text" name="phone" placeholder="Phone*">
 									</div>
 									<div class="single-checkout-box select-option">
@@ -172,18 +183,18 @@
 							</div>
 							<div class='form-row row'>
 								<div class='col-xs-12 form-group card required'>
-									<label class='control-label'>Card Number</label> <input autocomplete='off' class='form-control card-number' size='20' type='text' placeholder="4242424242424242">
+									<label class='control-label'>Card Number</label> <input autocomplete='off' class='form-control card-number' value="4242424242424242" size='20' type='text' placeholder="4242424242424242">
 								</div>
 							</div>
 							<div class='form-row row'>
 								<div class='col-xs-12 col-md-4 form-group cvc required'>
-									<label class='control-label'>CVC</label> <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
+									<label class='control-label'>CVC</label> <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' value="123" size='4' type='text'>
 								</div>
 								<div class='col-xs-12 col-md-4 form-group expiration required'>
-									<label class='control-label'>Expiration Month</label> <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
+									<label class='control-label'>Expiration Month</label> <input class='form-control card-expiry-month' placeholder='MM' value="12" size='2' type='text'>
 								</div>
 								<div class='col-xs-12 col-md-4 form-group expiration required'>
-									<label class='control-label'>Expiration Year</label> <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
+									<label class='control-label'>Expiration Year</label> <input class='form-control card-expiry-year' placeholder='YYYY' value="2025" size='4' type='text'>
 								</div>
 							</div>
 						</div>
