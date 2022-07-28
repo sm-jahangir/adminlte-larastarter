@@ -42,3 +42,4 @@ Route::resource('slider', SliderController::class);
 Route::resource('coupons', CouponController::class);
 
 Route::get('orders', [OrderController::class, 'orders'])->name('orders');
+Route::get('order/details/{id}', [OrderController::class, 'details'])->name('orders.details');

@@ -58,6 +58,7 @@
 												<th class="text-center">ZipCode</th>
 												<th class="text-center">Status</th>
 												<th class="text-center">Order Date</th>
+												<th class="text-center">Action</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -74,6 +75,11 @@
 													<td class="text-center">{{ $order->zipcode }}</td>
 													<td class="text-center">{{ $order->status }}</td>
 													<td class="text-center">{{ $order->created_at->diffForHumans() }}</td>
+													<td class="text-center">
+														<a class="btn btn-info btn-sm" href="{{ route('app.orders.details', $order->id) }}"><i class="fas fa-edit"></i>
+															<span>Details</span>
+														</a>
+													</td>
 												</tr>
 											@endforeach
 										</tbody>
