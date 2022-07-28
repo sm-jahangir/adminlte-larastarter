@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ColorController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SizeController;
 use App\Http\Controllers\Backend\SliderController;
@@ -39,3 +40,5 @@ Route::resource('color', ColorController::class);
 Route::resource('product', ProductController::class);
 Route::resource('slider', SliderController::class);
 Route::resource('coupons', CouponController::class);
+
+Route::get('orders', [OrderController::class, 'orders'])->name('orders');
