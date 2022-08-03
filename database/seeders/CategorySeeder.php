@@ -146,5 +146,110 @@ class CategorySeeder extends Seeder
             'icon_image' => 'thum3.png',
             'parent_id' => 0,
         ]);
+        // JEWELRY & WATCHES
+        Category::updateOrCreate([
+            'name' =>  'Awesome Rings',
+            'slug'  =>  Str::slug('Awesome Rings'),
+            'parent_id' => 20,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Hot Earrings',
+            'slug'  =>  Str::slug('Hot Earrings'),
+            'parent_id' => 20,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Jewelry Sets',
+            'slug'  =>  Str::slug('Jewelry Sets'),
+            'parent_id' => 20,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Beads Jewelry',
+            'slug'  =>  Str::slug('Beads Jewelry'),
+            'parent_id' => 20,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Mens Watches',
+            'slug'  =>  Str::slug('Mens Watches'),
+            'parent_id' => 20,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Women’s Watches',
+            'slug'  =>  Str::slug('Women’s Watches'),
+            'parent_id' => 20,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Popular Watches',
+            'slug'  =>  Str::slug('Popular Watches'),
+            'parent_id' => 20,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Childrens Watches',
+            'slug'  =>  Str::slug('Childrens Watches'),
+            'parent_id' => 20,
+        ]);
+
+        // BAGS & SHOES
+        Category::updateOrCreate([
+            'name' =>  'Awesome Shoes',
+            'slug'  =>  Str::slug('Awesome Shoes'),
+            'parent_id' => 17,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Hot Shoes',
+            'slug'  =>  Str::slug('Hot Shoes'),
+            'parent_id' => 17,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Mens Shoes',
+            'slug'  =>  Str::slug('Mens Shoes'),
+            'parent_id' => 17,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Women’s Shoes',
+            'slug'  =>  Str::slug('Women’s Shoes'),
+            'parent_id' => 17,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Popular Bracelets',
+            'slug'  =>  Str::slug('Popular Bracelets'),
+            'parent_id' => 17,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Childrens Shoes',
+            'slug'  =>  Str::slug('Childrens Shoes'),
+            'parent_id' => 17,
+        ]);
+
+        // Toys and Kit Baby
+        Category::updateOrCreate([
+            'name' =>  'Baby Products',
+            'slug'  =>  Str::slug('Baby Products'),
+            'parent_id' => 8,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Toddler Products',
+            'slug'  =>  Str::slug('Toddler Products'),
+            'parent_id' => 8,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Kids Products',
+            'slug'  =>  Str::slug('Kids Products'),
+            'parent_id' => 8,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Children Products',
+            'slug'  =>  Str::slug('Children Products'),
+            'parent_id' => 8,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Baby Stationery',
+            'slug'  =>  Str::slug('Baby Stationery'),
+            'parent_id' => 8,
+        ]);
+        Category::updateOrCreate([
+            'name' =>  'Diapering',
+            'slug'  =>  Str::slug('Diapering'),
+            'parent_id' => 8,
+        ]);
     }
 }

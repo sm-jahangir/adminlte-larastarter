@@ -1,8 +1,6 @@
-
-* Laravel UI package use
-* bumbummen99/shoppingcart use for Shooping Cart
-* Added Spatie media library
-* Product e image custom vabe upload korar system ache
-
-
-
+User Action button to change Order Status
+User Order Review and Rating
+Implement Settings
+Order Confirmation Email Processing Message when Place an Order Button Click
+Category to Product
+Product Price Rance to Search Product

@@ -34,6 +34,7 @@ class ProductSeeder extends Seeder
             'stock_status' => 'In Stock',
             'product_collections' => 'Best Sellers',
             'labels' => 'Hot',
+            'featured' => false,
             'trending' => true,
             'popular' => true
         ]);
@@ -60,7 +61,8 @@ class ProductSeeder extends Seeder
             'stock_status' => 'In Stock',
             'product_collections' => 'Best Sellers',
             'labels' => 'Hot',
-            'trending' => true,
+            'featured' => true,
+            'trending' => false,
             'popular' => true
         ]);
         $product2->categories()->attach(1);
@@ -86,8 +88,9 @@ class ProductSeeder extends Seeder
             'stock_status' => 'In Stock',
             'product_collections' => 'Best Sellers',
             'labels' => 'Hot',
+            'featured' => true,
             'trending' => true,
-            'popular' => true
+            'popular' => false
         ]);
         $product3->categories()->attach(1);
         $product3->tags()->attach(1);
@@ -112,6 +115,7 @@ class ProductSeeder extends Seeder
             'stock_status' => 'In Stock',
             'product_collections' => 'Best Sellers',
             'labels' => 'Hot',
+            'featured' => false,
             'trending' => true,
             'popular' => true
         ]);
@@ -138,7 +142,8 @@ class ProductSeeder extends Seeder
             'stock_status' => 'In Stock',
             'product_collections' => 'Best Sellers',
             'labels' => 'Hot',
-            'trending' => true,
+            'featured' => true,
+            'trending' => false,
             'popular' => true
         ]);
         $product5->categories()->attach(1);
@@ -164,8 +169,9 @@ class ProductSeeder extends Seeder
             'stock_status' => 'In Stock',
             'product_collections' => 'Best Sellers',
             'labels' => 'Hot',
+            'featured' => false,
             'trending' => true,
-            'popular' => true
+            'popular' => false
         ]);
         $product6->categories()->attach(1);
         $product6->tags()->attach(1);
@@ -190,6 +196,7 @@ class ProductSeeder extends Seeder
             'stock_status' => 'In Stock',
             'product_collections' => 'Best Sellers',
             'labels' => 'Hot',
+            'featured' => false,
             'trending' => true,
             'popular' => true
         ]);
@@ -216,6 +223,7 @@ class ProductSeeder extends Seeder
             'stock_status' => 'In Stock',
             'product_collections' => 'Best Sellers',
             'labels' => 'Hot',
+            'featured' => true,
             'trending' => true,
             'popular' => true
         ]);
@@ -242,6 +250,7 @@ class ProductSeeder extends Seeder
             'stock_status' => 'In Stock',
             'product_collections' => 'Best Sellers',
             'labels' => 'Hot',
+            'featured' => false,
             'trending' => true,
             'popular' => true
         ]);

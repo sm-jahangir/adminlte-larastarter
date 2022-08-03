@@ -33,6 +33,8 @@ Route::view('checkout', 'frontend.checkout');
 Route::view('single-blog', 'frontend.single-blog');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/category', [FrontendHomeController::class, 'allcategory'])->name('category.all');
+Route::get('/category/{slug}', [FrontendHomeController::class, 'categorybyproduct'])->name('category.by.product');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/addtocart/{id}', [CartController::class, 'storeCart'])->name('cart.store');
