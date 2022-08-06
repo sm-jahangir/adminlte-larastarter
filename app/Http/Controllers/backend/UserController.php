@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -21,8 +24,7 @@ class UserController extends Controller
     {
         Gate::authorize('app.users.index');
         $users = User::all();
-        return view('backend.users.index',compact('users'));
-
+        return view('backend.users.index', compact('users'));
     }
 
     /**
@@ -54,12 +56,12 @@ class UserController extends Controller
         ]);
         // upload images
         // upload images
-        if($request->hasFile('avatar')){
+        if ($request->hasFile('avatar')) {
             $image = $request->file('avatar');
             $ext = $image->extension();
-            $file = time(). '.'.$ext;
-            $image->storeAs('public/users',$file);//above 4 line process the image code
-            $user->avatar =  $file;//ai code ta image ke insert kore
+            $file = time() . '.' . $ext;
+            $image->storeAs('public/users', $file); //above 4 line process the image code
+            $user->avatar =  $file; //ai code ta image ke insert kore
             $user->save();
         }
         notify()->success('User Successfully Added.', 'Added');
@@ -74,7 +76,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('backend.users.show',compact('user'));
+        return view('backend.users.show', compact('user'));
     }
 
     /**
@@ -87,7 +89,7 @@ class UserController extends Controller
     {
         Gate::authorize('app.users.edit');
         $roles = Role::all();
-        return view('backend.users.form', compact('roles','user'));
+        return view('backend.users.form', compact('roles', 'user'));
     }
 
     /**
@@ -108,16 +110,16 @@ class UserController extends Controller
         ]);
         // upload images
         if (request()->hasFile('avatar') && request('avatar') != '') {
-            $imagePath = public_path('storage/post/'.$user->image);
-            if(File::exists($imagePath)){
+            $imagePath = public_path('storage/post/' . $user->image);
+            if (File::exists($imagePath)) {
                 unlink($imagePath);
             }
-            
+
             $image = $request->file('avatar');
             $ext = $image->extension();
-            $file = time(). '.'.$ext;
-            $image->storeAs('public/users',$file);//above 4 line process the image code
-            $user->avatar =  $file;//ai code ta image ke insert kore
+            $file = time() . '.' . $ext;
+            $image->storeAs('public/users', $file); //above 4 line process the image code
+            $user->avatar =  $file; //ai code ta image ke insert kore
         }
         $user->save();
         notify()->success('User Successfully Updated.', 'Updated');
@@ -134,16 +136,24 @@ class UserController extends Controller
     {
         Gate::authorize('app.users.destroy');
 
-        $image_path = public_path("\storage\users\\") .$user->image;
-        if(File::exists($image_path)) {
+        $image_path = public_path("\storage\users\\") . $user->image;
+        if (File::exists($image_path)) {
             File::delete($image_path);
-        }
-        else{
+        } else {
             $user->delete();
             //abort(404);
         }
         $user->delete();
         notify()->success("User Successfully Deleted", "Deleted");
         return back();
+    }
+    public function importUser(Request $request)
+    {
+        Excel::import(new UsersImport, $request->file('file')->store('temp'));
+        return back();
+    }
+    public function exportuser()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }

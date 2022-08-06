@@ -21,6 +21,9 @@ use App\Models\Slider;
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
+Route::get('user/export', [UserController::class, 'exportuser'])->name('user.export');
+Route::post('user/import', [UserController::class, 'importUser'])->name('user.import');
+Route::view('user-export-import', 'backend.users.import')->name('eiview');
 
 //Profile Routes
 Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
