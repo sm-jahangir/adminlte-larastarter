@@ -8,7 +8,7 @@
 					<div class="ft__widget">
 						<div class="ft__logo">
 							<a href="index.html">
-								<img src="{{ asset('assets/frontend') }}/images/logo/logo.png" alt="footer logo">
+								<img src="{{ asset('assets/frontend') }}/images/logo/online-store-logo-1.png" alt="footer logo">
 							</a>
 						</div>
 						<div class="footer-address">

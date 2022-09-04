@@ -9,7 +9,7 @@
 					<div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
 						<div class="logo">
 							<a href="/">
-								<img src="{{ asset('assets/frontend') }}/images/logo/logo.png" alt="logo">
+								<img src="{{ asset('assets/frontend') }}/images/logo/online-store-logo-1.png" alt="logo">
 							</a>
 						</div>
 					</div>
@@ -118,7 +118,7 @@
 				<div class="off__contact">
 					<div class="logo">
 						<a href="index.html">
-							<img src="{{ asset('assets/frontend') }}/images/logo/logo.png" alt="logo">
+							<img src="{{ asset('assets/frontend') }}/images/logo/online-store-logo-1.png" alt="logo">
 						</a>
 					</div>
 					<p>Lorem ipsum dolor sit amet consectetu adipisicing elit sed do eiusmod tempor incididunt ut

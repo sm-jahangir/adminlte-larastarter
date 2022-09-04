@@ -14,7 +14,7 @@
 	<div class="only-banner ptb--100 bg__white">
 		<div class="container">
 			<div class="only-banner-img">
-				<a href="shop-sidebar.html"><img src="{{ asset('assets/frontend') }}/images/new-product/3.jpg" alt="new product"></a>
+				<a href="shop-sidebar.html"><img src="{{ asset('assets/frontend') }}/images/bg/banner-1.jpg" alt="new product"></a>
 			</div>
 		</div>
 	</div>
@@ -24,7 +24,7 @@
 	<div class="only-banner ptb--100 bg__white">
 		<div class="container">
 			<div class="only-banner-img">
-				<a href="shop-sidebar.html"><img src="{{ asset('assets/frontend') }}/images/new-product/6.jpg" alt="new product"></a>
+				<a href="shop-sidebar.html"><img src="{{ asset('assets/frontend') }}/images/bg/banner-2.jpg" alt="new product"></a>
 			</div>
 		</div>
 	</div>
@@ -35,7 +35,7 @@
 	<div class="only-banner bg__white">
 		<div class="container">
 			<div class="only-banner-img">
-				<a href="shop-sidebar.html"><img src="{{ asset('assets/frontend') }}/images/new-product/7.jpg" alt="new product"></a>
+				<a href="shop-sidebar.html"><img src="{{ asset('assets/frontend') }}/images/bg/banner-3.jpg" alt="new product"></a>
 			</div>
 		</div>
 	</div>
@@ -65,7 +65,7 @@
 							<div class="blog__inner">
 								<div class="blog__thumb">
 									<a href="blog-details.html">
-										<img src="{{ asset('assets/frontend') }}/images/blog/blog-img/1.jpg" alt="blog images">
+										<img src="{{ asset('assets/frontend') }}/images/blog/product-1.jpg" alt="blog images">
 									</a>
 									<div class="blog__post__time">
 										<div class="post__time--inner">
@@ -97,7 +97,7 @@
 							<div class="blog__inner">
 								<div class="blog__thumb">
 									<a href="blog-details.html">
-										<img src="{{ asset('assets/frontend') }}/images/blog/blog-img/2.jpg" alt="blog images">
+										<img src="{{ asset('assets/frontend') }}/images/blog/product-2.png" alt="blog images">
 									</a>
 									<div class="blog__post__time">
 										<div class="post__time--inner">
@@ -129,7 +129,7 @@
 							<div class="blog__inner">
 								<div class="blog__thumb">
 									<a href="blog-details.html">
-										<img src="{{ asset('assets/frontend') }}/images/blog/blog-img/3.jpg" alt="blog images">
+										<img src="{{ asset('assets/frontend') }}/images/blog/product-3.jpg" alt="blog images">
 									</a>
 									<div class="blog__post__time">
 										<div class="post__time--inner">
